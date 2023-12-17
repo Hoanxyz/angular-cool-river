@@ -1,26 +1,32 @@
-<div class="max-w-1400">
-  <form class="log-in-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <h2>Sign in</h2>
-    <div class="row-control">
-      <mat-form-field appearance="outline">
-        <mat-label>Email</mat-label>
-        <input class="" formControlName="email" matInput placeholder="Email" />
-        <mat-error *ngIf="loginForm.get('email')?.errors?.['required']">This is a required field.</mat-error>
-        <mat-error *ngIf="loginForm.get('email')?.errors?.['email']">Please enter a valid email address (Ex: johndoe@domain.com).</mat-error>
-      </mat-form-field>
+<div class="max-w-1400 ml-auto mr-auto">
+  <div class="flex">
+    <form class="log-in-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <h2>Sign in</h2>
+      <div class="row-control">
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input autocomplete formControlName="email" matInput placeholder="Email" />
+          <mat-error *ngIf="loginForm.get('email')?.errors?.['required']">This is a required field.</mat-error>
+          <mat-error *ngIf="loginForm.get('email')?.errors?.['email']">Please enter a valid email address (Ex: johndoe@domain.com).</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="row-control">
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input autocomplete formControlName="password" [attr.type]="loginForm.get('showPassword')?.value ? '' : 'password'" matInput placeholder="Password" />
+          <mat-error *ngIf="loginForm.get('password')?.errors?.['required']">This is a required field.</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="row-control">
+        <mat-checkbox formControlName="showPassword">Show Password</mat-checkbox>
+      </div>
+      <div class="row-control row-actions">
+        <button mat-raised-button color="primary" type="submit">Sign in</button>
+      </div>
+    </form>
+    <div class="width-1/2">
+      <h2>New </h2>
+      <button mat-raised-button color="primary" routerLink="/customer/register">Create An Account</button>
     </div>
-    <div class="row-control">
-      <mat-form-field appearance="outline">
-        <mat-label>Password</mat-label>
-        <input formControlName="password" [attr.type]="loginForm.get('showPassword')?.value ? '' : 'password'" matInput placeholder="Password" />
-        <mat-error *ngIf="loginForm.get('password')?.errors?.['required']">This is a required field.</mat-error>
-      </mat-form-field>
-    </div>
-    <div class="row-control">
-      <mat-checkbox formControlName="showPassword">Show Password</mat-checkbox>
-    </div>
-    <div class="row-control row-actions">
-      <button mat-raised-button color="primary" type="submit">Sign in</button>
-    </div>
-  </form>
+  </div>
 </div>

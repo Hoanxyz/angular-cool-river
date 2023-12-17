@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Apollo} from "apollo-angular";
-import {GENERATE_CUSTOMER_TOKEN} from "../../../../services/customer.service";
+import {GENERATE_CUSTOMER_TOKEN, GET_CUSTOMER_DETAILS} from "../../../../services/customer.service";
+import {Subscription} from "rxjs";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -13,7 +15,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private apollo: Apollo
+    private apollo: Apollo,
+    private router: Router
   ) {
   }
   ngOnInit(): void {
@@ -32,7 +35,7 @@ export class LoginComponent implements OnInit {
         ])
       ],
       showPassword: false
-    })
+    });
   }
 
 
@@ -45,14 +48,19 @@ export class LoginComponent implements OnInit {
           password: this.loginForm.get('password')?.value
         },
       })
-        .subscribe(
-          ({ data }) => {
-            console.log('got data', data);
-          },
-          error => {
-            console.log('there was an error sending the query', error);
-          },
-        );
+      .subscribe(
+        ({ data }) => {
+          console.log('got data', data);
+          // @ts-ignore
+          localStorage.setItem("customer_token", data.generateCustomerToken.token);
+          setTimeout(() => {
+            this.router.navigate(['/'])
+          }, 1000)
+        },
+        error => {
+          console.log('there was an error sending the query', error);
+        },
+      );
     }
   }
 }
