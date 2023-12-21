@@ -1,0 +1,49 @@
+<div class="container ">
+  <form class="sign-up-form" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    <h2>Sign in</h2>
+    <div class="row-control">
+      <mat-form-field appearance="outline">
+        <mat-label>First Name</mat-label>
+        <input autocomplete matInput placeholder="First Name" formControlName="firstname" />
+        <mat-error *ngIf="signupForm.get('password')?.errors?.['required']">This is a required field.</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="row-control">
+      <mat-form-field appearance="outline">
+        <mat-label>Last Name</mat-label>
+        <input autocomplete matInput placeholder="Last Name" formControlName="lastname" />
+        <mat-error *ngIf="signupForm.get('password')?.errors?.['required']">This is a required field.</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="row-control">
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input autocomplete matInput placeholder="Email" formControlName="email" />
+        <mat-error *ngIf="signupForm.get('email')?.errors?.['required']">This is a required field.</mat-error>
+        <mat-error *ngIf="signupForm.get('email')?.errors?.['email']">Please enter a valid email address (Ex: johndoe@domain.com).</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="row-control">
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input autocomplete type="password" matInput placeholder="Password" formControlName="password" />
+        <mat-error *ngIf="signupForm.get('password')?.errors?.['required']">This is a required field.</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="row-control">
+      <mat-form-field appearance="outline">
+        <mat-label>Confirm Password</mat-label>
+        <input autocomplete type="password" matInput placeholder="Confirm Password" formControlName="confirmPassword">
+        <mat-error *ngIf="signupForm.get('confirmPassword')?.errors?.['required']">This is a required field.</mat-error>
+        <mat-error *ngIf="signupForm.get('confirmPassword')?.errors?.['valueNotMatch']">Please enter the same value again.</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="row-control">
+      <mat-checkbox formControlName="is_subscribed">Sign Up for Newsletter</mat-checkbox>
+    </div>
+    <div class="row-control row-actions">
+      <button mat-raised-button color="primary" type="submit">Sign up</button>
+    </div>
+  </form>
+</div>
+
