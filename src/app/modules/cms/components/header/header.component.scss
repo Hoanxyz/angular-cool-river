@@ -37,14 +37,25 @@
       }
    
       .header-search {
-        @apply text-center;
+        @apply text-center flex justify-center;
         input {
-          @apply h-12 text-base text-gray w-[267px] px-4 py-0;
-          font-family: Montserrat;
+          @apply h-12 text-base text-gray w-[267px] px-4 py-0 border-0;
         }
    
         button {
-          @apply h-12;
+          @apply h-12 relative w-[54px] bg-button border-0	;
+          &::before {
+            content: url('../../../../../assets/layout/images/search_icon.svg');
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            left: 18px;
+            top: 14px;
+          }
+  
+          &:focus {
+            @apply outline-0;
+          }
         }
       }
    

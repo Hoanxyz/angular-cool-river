@@ -1,11 +1,32 @@
 import {gql} from "@apollo/client/core";
-import { Component } from "@angular/core";
+import { Component, Injectable } from "@angular/core";
+import { Apollo } from "apollo-angular";
  
-// @Component({
-//   selector: 'app-search',
-//   templateUrl: './search.component.html',
-//   styleUrls: ['./search.component.css'],
-// })
+@Injectable({
+  providedIn: 'root',
+})
+export class GraphqlService {
+  constructor(private apollo: Apollo) {}
+
+  searchProducts(keyword: string) {
+    return this.apollo.watchQuery({
+      query: gql`
+        query GetProducts($keyword: String!) {
+          products(search: $keyword, filter: {}, pageSize: 20, currentPage: 1, sort: {}) {
+            items {
+              id
+              name
+              sku
+            }
+          }
+        }
+      `,
+      variables: {
+        keyword,
+      },
+    }).valueChanges;
+  }
+}
 
 export const GET_HEADER_TOP = gql `
   query GetHeaderTop {
@@ -50,71 +71,35 @@ export const GET_CATEGORIES = gql `
 `
 
 export const GET_SEARCH_QUERY = gql `
-  query GetUrlAccount {
+  query GetProducts($keyword: String!) {
     products(
-    search: "string"
-    filter: {}
-    pageSize: 20
-    currentPage: 1
-    sort: {}
-    ) {
-    aggregations(filter: {}) {
-        attribute_code
-        count
-        label
-        position
-    }
-    filters {
-        filter_items_count
-        name
-        request_var
-    }
-    items {
-        attribute_set_id
-        canonical_url
-        color
-        colour
-        country_of_manufacture
-        created_at
-        delivery_returns
-        gift_message_available
-        id
-        meta_description
-        meta_keyword
-        meta_title
-        name
-        new_from_date
-        new_to_date
-        only_x_left_in_stock
-        options_container
-        review_count
-        size
-        sku
-        special_from_date
-        special_price
-        special_to_date
-        specifications
-        stock_status
-        swatch_image
-        type_id
-        uid
-        updated_at
-        url_key
-        url_path
-        url_suffix
-    }
-    page_info {
-        current_page
-        page_size
-        total_pages
-    }
-    sort_fields {
-        default
-    }
-    suggestions {
-        search
-    }
-    total_count
-    }
+      search: $keyword
+      filter: {}
+      pageSize: 20
+      currentPage: 1
+      sort: {}
+      ) {
+      aggregations(filter: {}) {
+          attribute_code
+          label
+      }
+      filters {
+          filter_items_count
+          name
+          request_var
+      }
+      items {
+          canonical_url
+          id
+          name
+          sku
+          stock_status
+          url_key
+      }
+      suggestions {
+          search
+      }
+      total_count
+      }
   }
 `

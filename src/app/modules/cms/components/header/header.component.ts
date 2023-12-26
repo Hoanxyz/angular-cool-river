@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { Router } from '@angular/router';
 import { GET_CATEGORIES, GET_CONTACT, GET_HEADER_TOP, GET_LOGO, GET_SEARCH_QUERY } from 'src/app/modules/services/header.service';
@@ -8,7 +8,8 @@ import { FormControl } from '@angular/forms';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class HeaderComponent implements OnDestroy {
   isLogged = false;

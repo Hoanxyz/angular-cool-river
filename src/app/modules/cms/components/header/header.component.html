@@ -6,10 +6,7 @@
     <a class="header-item" [href]="baseUrl">
       <img [src]="baseUrl + 'media/logo/' + logoSrc"/>
     </a>
-    <div class="header-item header-search">
-      <input placeholder="Enter search term" />
-      <button>Search</button>
-    </div>
+    <app-search class="header-item"></app-search>
     <div class="header-item header-contact" innerHTML="{{ conTentContact }}"></div>
   </div>
   <div class="header-bottom">

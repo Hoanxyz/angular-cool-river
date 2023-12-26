@@ -12,7 +12,8 @@ module.exports = {
       colors: {
         gray: '#8D929A',
         gray1: '#8C9199',
-        gray2: '#333'
+        gray2: '#333',
+        button: '#45B3F8'
       },
       fontSize: {
         '0': '0',
