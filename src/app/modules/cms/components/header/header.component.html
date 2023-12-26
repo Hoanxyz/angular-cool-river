@@ -1,18 +1,26 @@
-<ul class="nav nav-pills card-header-pills max-w-1/2">
-  <div *ngIf="!loading">
-    <div *ngIf="!isLogged">
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/customer/register">Register</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/customer/login">Login</a>
-      </li>
+<div class="header-top">
+  <div class="header-top-content" innerHTML="{{ conTentTopHeader }}"></div>
+</div>
+<div class="header-content-area">
+  <div class="header-content">
+    <a class="header-item" [href]="baseUrl">
+      <img [src]="baseUrl + 'media/logo/' + logoSrc"/>
+    </a>
+    <div class="header-item header-search">
+      <input placeholder="Enter search term" />
+      <button>Search</button>
     </div>
-    <div *ngIf="isLogged">
-      <h3>Hello: {{customer.firstname}} {{customer.lastname}}</h3>
-      <div>
-        <a href="" (click)="logout()">Logout</a>
-      </div>
+    <div class="header-item header-contact" innerHTML="{{ conTentContact }}"></div>
+  </div>
+  <div class="header-bottom">
+    <div class="navigation">
+      <a *ngFor="let categoryName of getCategoryNames()">
+        {{ categoryName }}
+      </a>
+    </div>
+    <div class="my-acount">
+        <a class="account" href="#">Account</a>
+        <a class="cart" href="#">Cart</a>
     </div>
   </div>
-</ul>
+</div>
