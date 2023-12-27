@@ -9,13 +9,8 @@ import { ProductComponent } from './components/product/product.component';
 
 const routes: Routes = [
     {
-        path: '',
-        children: [
-            {
-            path: 'test',
-            component: ProductComponent
-            }
-        ]
+        path: ':sku',
+        component: ProductComponent
     }
 ];
   

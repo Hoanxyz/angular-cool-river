@@ -22,7 +22,7 @@ export class SearchComponent {
       variables: { keyword: this.searchKeyword },
     }).valueChanges.subscribe(
       (rep) => {
-        console.log(rep.data.products.items);
+        // console.log(rep.data.products.items);
       }
     );
   }
