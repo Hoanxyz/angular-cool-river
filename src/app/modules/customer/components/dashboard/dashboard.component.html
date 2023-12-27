@@ -1,0 +1,155 @@
+<div class="page-title">
+  <h1>My Dashboard</h1>
+</div>
+<div class="account-dashboard-main flex">
+
+<div class="sidebar sidebar-main">
+  <div class="block block-collapsible-nav">
+    <div class="title block-collapsible-nav-title">
+      <strong> My Account </strong>
+    </div>
+    <div
+      class="content block-collapsible-nav-content"
+      id="block-collapsible-nav"
+    >
+      <ul class="nav items">
+        <li class="nav item current"><strong>My Account</strong></li>
+        <li class="nav item">
+          <a href="https://magentoapi.merket.io/sales/order/history/"
+            >My Orders</a
+          >
+        </li>
+        <li class="nav item">
+          <a href="https://magentoapi.merket.io/downloadable/customer/products/"
+            >My Downloadable Products</a
+          >
+        </li>
+        <li class="nav item">
+          <a href="https://magentoapi.merket.io/wishlist/">My Wish List</a>
+        </li>
+        <li class="nav item">
+          <span class="delimiter"></span>
+        </li>
+        <li class="nav item">
+          <a href="https://magentoapi.merket.io/customer/address/"
+            >Address Book</a
+          >
+        </li>
+        <li class="nav item">
+          <a href="https://magentoapi.merket.io/customer/account/edit/"
+            >Account Information</a
+          >
+        </li>
+        <li class="nav item">
+          <a href="https://magentoapi.merket.io/vault/cards/listaction/"
+            >Stored Payment Methods</a
+          >
+        </li>
+        <li class="nav item">
+          <span class="delimiter"></span>
+        </li>
+        <li class="nav item">
+          <a href="https://magentoapi.merket.io/review/customer/"
+            >My Product Reviews</a
+          >
+        </li>
+        <li class="nav item">
+          <a href="https://magentoapi.merket.io/newsletter/manage/"
+            >Newsletter Subscriptions</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="page-main">
+
+  <div class="block block-recent-orders">
+    <div class="title flex gap-x">
+      <h2>Recent Orders</h2>
+      <a class="view-all link" href="/customer/order/history">
+        view all
+      </a>
+    </div>
+    <div class="content">
+      <table>
+        <thead>
+          <tr>
+            <th>Order #</th>
+            <th>Date</th>
+            <th>Ship to</th>
+            <th>Order Total</th>
+            <th>Status</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let e of order.customer.orders.items">
+            <td>{{e.number}}</td>
+            <td>{{e.order_date}}</td>
+            <td>{{e.shipping_address.firstname}} {{e.shipping_address.middlename}} {{e.shipping_address.lastname}}</td>
+            <td>{{e.total.grand_total.value}}{{order.currency.base_currency_symbol}}</td>
+            <td>{{e.status}}</td>
+            <td><a href="customer/order/view/order_id/{{e.id.order_id}}">View order</a></td>
+            <td><a href="customer/reorder/order_id/{{e.id.cart_id}}">Reorder</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+  </div>
+
+  <div class="block block-account-info">
+    <div class="title flex gap-x">
+      <h2>Account Information</h2>
+    </div>
+    <div class="content lg:flex">
+      <div class="contact-info">
+        <h3>Contact Information</h3>
+        <div class="details">
+          <p>{{order.customer.email}}</p>
+          <p>{{order.customer.firstname}}</p>
+          <p>{{order.customer.middlename}}</p>
+          <p>{{order.customer.lastname}}</p>
+        </div>
+      </div>
+      <div class="newsletter-info">
+        <h3>Newsletter</h3>
+        <div class="details">
+          <p *ngIf="!order.customer.is_subscribed">you don't subcribe to our newsletter</p>
+          <a href="/edit">edit</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="block block-address-info">
+    <div class="title flex gap-x">
+      <h2>Address Book</h2>
+    </div>
+    <div class="content lg:flex">
+      <div class="contact-info">
+        <h3>Default Billing Address</h3>
+        <div class="details">
+          <p>{{order.customer.email}}</p>
+          <p>{{order.customer.firstname}}</p>
+          <p>{{order.customer.middlename}}</p>
+          <p>{{order.customer.lastname}}</p>
+        </div>
+      </div>
+      <div class="newsletter-info">
+        <h3>Default Shipping Address</h3>
+        <div class="details">
+          <p>{{order.customer.email}}</p>
+          <p>{{order.customer.firstname}}</p>
+          <p>{{order.customer.middlename}}</p>
+          <p>{{order.customer.lastname}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+</div>
