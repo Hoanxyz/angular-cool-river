@@ -1,6 +1,6 @@
 // Header top
 .header-top {
-    @apply max-w-[1240px] m-auto;
+    @apply max-w-1240 m-auto;
     .pagebuilder-column-line {
       @apply flex justify-between;
       .pagebuilder-column {
@@ -10,7 +10,7 @@
         }
    
         p {
-          @apply text-gray1 text-tiny;
+          @apply text-grey-400 text-tiny;
         }
       }
    
@@ -26,9 +26,9 @@
    
   // Header content
   .header-content-area {
-    @apply bg-gray2;
+    @apply bg-grey-900;
     .header-content {
-      @apply flex max-w-[1240px] m-auto items-center py-4;
+      @apply flex max-w-1240 m-auto items-center py-4;
       .header-item {
         @apply w-2/6;
         img {
@@ -39,11 +39,11 @@
       .header-search {
         @apply text-center flex justify-center;
         input {
-          @apply h-12 text-base text-gray w-[267px] px-4 py-0 border-0;
+          @apply h-12 text-grey-200 w-[267px] px-4 py-0 border-0;
         }
    
         button {
-          @apply h-12 relative w-[54px] bg-button border-0	;
+          @apply h-12 relative w-[54px] bg-button-background border-0	;
           &::before {
             content: url('../../../../../assets/layout/images/search_icon.svg');
             position: absolute;
@@ -76,7 +76,7 @@
    
           p,
           a {
-            @apply text-white no-underline text-mmd font-semibold;
+            @apply text-white no-underline text-ssm font-semibold;
           }
         }
    
@@ -87,7 +87,7 @@
     }
    
     .header-bottom {
-      @apply max-w-[1240px] m-auto flex justify-between;
+      @apply max-w-1240 m-auto flex justify-between;
       .navigation {
         @apply p-0;
         a {
