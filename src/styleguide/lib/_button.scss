@@ -1,0 +1,31 @@
+.button {
+    @apply font-sans text-lg leading-5 text-white font-bold text-center tracking-normal no-underline bg-primary border border-solid border-primary shadow-none cursor-pointer px-4 py-[9px];
+
+    &:hover {
+        @apply text-white no-underline bg-primary-hover border-primary-hover;
+    }
+
+    &.button-primary {
+        @apply text-white bg-primary border-primary;
+
+        &:hover {
+            @apply bg-primary-hover border-primary-hover;
+        }
+    }
+
+    &.button-secondary {
+        @apply text-white bg-secondary border-secondary;
+
+        &:hover {
+            @apply bg-secondary-hover border-secondary-hover;
+        }
+    }
+
+    &.button-light {
+        @apply text-grey-800 bg-white border-light-border;
+
+        &:hover {
+            @apply text-grey-800 bg-light-hover border-light-hover;
+        }
+    }
+}
