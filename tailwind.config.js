@@ -13,12 +13,14 @@ module.exports = {
       '4.5xl': ['42px', { lineHeight: '34px' }],
       'ssm': ['15px', { lineHeight: '17px' }],
       'sm': ['14px', { lineHeight: '20px' }],
+      'tiny': ['0.8125rem', { lineHeight: '0.75rem',}],
       'lg': ['18px', { lineHeight: '28px' }],
     },
     extend: {
       maxWidth: {
         '1/2': '50%',
         '1400': '1400px',
+        '1240': '1240px'
       },
       colors: {
         primary: {
@@ -60,11 +62,17 @@ module.exports = {
         },
         grey: {
           100: '#CCCCCC',
+          200: '#8D929A',
           300: '#EEEEEE',
+          400: '#8C9199',
           500: '#E4E4E4',
           600: '#DDDDDD',
           700: '#4A4A4A',
           800: '#222222',
+          900: '#333333',
+        },
+        button: {
+          background: '#45B3F8'
         }
       },
       lineHeight: {
