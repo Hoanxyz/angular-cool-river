@@ -1,0 +1,20 @@
+h1, .h1,
+h2, .h2 {
+    @apply font-oswald font-medium text-4.5xl text-grey-800 tracking-normal;
+}
+
+h3, .h3 {
+    @apply font-oswald font-medium text-1.5xl text-black tracking-normal;
+}
+
+h4, .h4 {
+    @apply font-oswald font-medium text-ssm text-black tracking-xsSpacing;
+}
+
+p {
+    @apply font-sans text-sm font-normal text-grey-700 leading-5.5 tracking-normal mb-2;
+}
+
+a, .link, .text-link {
+    @apply font-sans text-sm text-black font-normal leading-5.5 underline hover:text-black hover:underline;
+}
