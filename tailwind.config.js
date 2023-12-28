@@ -10,11 +10,13 @@ module.exports = {
     },
     fontSize: {
       '1.5xl': ['22px', { lineHeight: '28px' }],
+      '2xl': ['32px', { lineHeight: '34px' }],
       '4.5xl': ['42px', { lineHeight: '34px' }],
       'ssm': ['15px', { lineHeight: '17px' }],
       'sm': ['14px', { lineHeight: '20px' }],
       'tiny': ['0.8125rem', { lineHeight: '0.75rem',}],
       'lg': ['18px', { lineHeight: '28px' }],
+      'xxs': ['11px', { lineHeight: '18px' }],
     },
     extend: {
       maxWidth: {

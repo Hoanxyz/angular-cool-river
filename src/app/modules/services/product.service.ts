@@ -3,6 +3,9 @@ import { gql } from "@apollo/client/core";
 export const GET_PRODUCT = gql`
   query GetProduct($sku: String!) {
     products(filter: { sku: { eq: $sku } }) {
+      aggregations(filter: {}) {
+        attribute_code
+      }
       items {
         id
         name
@@ -15,7 +18,19 @@ export const GET_PRODUCT = gql`
                 }
             }
         }
+        review_count
+        reviews {
+          items {
+            average_rating
+            ratings_breakdown {
+              value
+            }
+          }
+        }
       }
+    }
+    currency {
+      base_currency_symbol
     }
   }
 `;
@@ -23,17 +38,15 @@ export const GET_PRODUCT = gql`
 export const GET_CURRENCY = gql`
   query GetCurrency {
     currency {
-        available_currency_codes
-        base_currency_code
-        base_currency_symbol
-        default_display_currecy_code
-        default_display_currecy_symbol
-        default_display_currency_code
-        default_display_currency_symbol
-        exchange_rates {
-          currency_to
-          rate
-        }
+      base_currency_symbol
+    }
+    customAttributeMetadata(attributes: [{}]) {
+      items {
+        attribute_code
+        attribute_type
+        entity_type
+        input_type
       }
+    }
   }
 `;

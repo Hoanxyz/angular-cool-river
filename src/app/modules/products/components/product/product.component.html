@@ -1,10 +1,35 @@
-<div class="breadcrumb max-w-[1240px] m-auto">Home / {{ nameProduct }}</div>
+<!-- Product.component.html -->
+<div class="breadcrumb max-w-1240 m-auto text-xxs mt-5">
+    <a class="no-underline text-xxs" [routerLink]="['/']">Home</a> / <span class="text-xxs">{{ product.name }}</span>
+</div>
+
 <div class="column main flex flex-wrap">
     <div class="product media w-1/2">
-
+        <!-- Include your product image or media here -->
     </div>
+
     <div class="product-info-main w-1/2">
-        <h1 class="page-title-wrapper product">{{ nameProduct }}</h1>
-        <span>{{ price }}</span>
+        <div class="flex items-center">
+            <!-- Star Rating -->
+            <div [attr.data-rating]="product.reviews?.items?.[0]?.average_rating" *ngIf="product.reviews?.items?.[0]?.average_rating !== undefined"
+            class="flex star-rating mr-2">
+            <div class="star text-3xl text-gray-300 mr-1">&#9733;</div>
+            <div class="star text-3xl text-gray-300 mr-1">&#9733;</div>
+            <div class="star text-3xl text-gray-300 mr-1">&#9733;</div>
+            <div class="star text-3xl text-gray-300 mr-1">&#9733;</div>
+            <div class="star text-3xl text-gray-300 mr-1">&#9733;</div>
+        </div>
+
+        <!-- Review count -->
+        <a href="#" *ngIf="product.review_count && product.review_count > 0">
+            {{ product.review_count }} Reviews
+            </a>
+        </div>
+        
+        <!-- Product Title -->
+        <h1 class="page-title-wrapper product">{{ product.name }}</h1>
+
+        <!-- Product Price -->
+        <span class="text-black font-semibold text-2xl">{{ currency }}{{ product.price?.regularPrice?.amount?.value }}</span>
     </div>
 </div>

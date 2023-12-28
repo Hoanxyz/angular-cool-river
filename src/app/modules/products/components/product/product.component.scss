@@ -1,0 +1,20 @@
+.star-rating[data-rating="20"] .star:nth-child(-n+1) {
+    @apply text-yellow-500;
+}
+
+.star-rating[data-rating="40"] .star:nth-child(-n+2) {
+    @apply text-yellow-500;
+}
+
+.star-rating[data-rating="60"] .star:nth-child(-n+3) {
+    @apply text-yellow-500;
+}
+
+.star-rating[data-rating="80"] .star:nth-child(-n+4) {
+    @apply text-yellow-500;
+}
+
+.star-rating[data-rating="100"] .star {
+    @apply text-yellow-500;
+}
+  
