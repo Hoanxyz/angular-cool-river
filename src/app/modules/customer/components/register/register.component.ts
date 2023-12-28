@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors} from "@angular/forms";
-import {CREATE_CUSTOMER} from "../../../../services/customer.service";
+import {CREATE_CUSTOMER, GENERATE_CUSTOMER_TOKEN} from "../../../services/customer.service";
 import {Apollo} from "apollo-angular";
 import {delay, interval, map, Observable, of, switchMap, timeout, timer} from "rxjs";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +14,8 @@ export class RegisterComponent implements OnInit {
   signupForm!: FormGroup;
   constructor(
     private fb: FormBuilder,
-    private apollo: Apollo
+    private apollo: Apollo,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -65,7 +67,7 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     if (!this.signupForm.invalid) {
-      this.apollo.mutate({
+      this.apollo.mutate<any>({
         mutation: CREATE_CUSTOMER,
         variables: {
           firstname: this.signupForm.get('firstname')?.value,
@@ -77,7 +79,24 @@ export class RegisterComponent implements OnInit {
       })
       .subscribe(
         ({ data }) => {
-          console.log('got data', data);
+          this.apollo.mutate<any>({
+            mutation: GENERATE_CUSTOMER_TOKEN,
+            variables: {
+              email: this.signupForm.get('email')?.value,
+              password: this.signupForm.get('password')?.value
+            },
+          })
+          .subscribe(
+            ({ data }) => {
+              localStorage.setItem("customer_token", data.generateCustomerToken.token);
+              setTimeout(() => {
+                this.router.navigate(['/dashboard'])
+              }, 1000)
+            },
+            error => {
+              console.log('there was an error sending the query', error);
+            },
+          );
         },
         error => {
           console.log('there was an error sending the query', error);

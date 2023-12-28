@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
 import {CmsModule} from "./modules/cms/cms.module";
+import {CustomerModule} from "./modules/customer/customer.module";
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import {CmsModule} from "./modules/cms/cms.module";
     GraphQLModule,
     HttpClientModule,
     CmsModule,
+    CustomerModule
   ],
   exports: [
   ],

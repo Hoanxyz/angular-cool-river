@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Apollo} from "apollo-angular";
-import {GENERATE_CUSTOMER_TOKEN, GET_CUSTOMER_DETAILS} from "../../../../services/customer.service";
+import {GENERATE_CUSTOMER_TOKEN, GET_CUSTOMER_DETAILS} from "../../../services/customer.service";
 import {Subscription} from "rxjs";
 import {Router} from "@angular/router";
 
@@ -50,11 +50,10 @@ export class LoginComponent implements OnInit {
       })
       .subscribe(
         ({ data }) => {
-          console.log('got data', data);
           // @ts-ignore
           localStorage.setItem("customer_token", data.generateCustomerToken.token);
           setTimeout(() => {
-            this.router.navigate(['/'])
+            this.router.navigate(['/dashboard'])
           }, 1000)
         },
         error => {
