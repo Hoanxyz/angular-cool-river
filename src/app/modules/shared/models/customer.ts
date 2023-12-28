@@ -4,5 +4,5 @@ export interface ILoginRequest {
 }
 
 export interface ILoginResponse {
-  data: any;
+  generateCustomerToken: any;
 }

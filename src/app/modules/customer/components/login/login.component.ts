@@ -48,8 +48,8 @@ export class LoginComponent implements OnInit {
       this.customerService.Login(this.loginRequest)
       .subscribe(
         ({ data }) => {
-          // @ts-ignore
-          localStorage.setItem("customer_token", data.generateCustomerToken.token);
+          console.log('login: ', data)
+          localStorage.setItem("customer_token", data?.generateCustomerToken.token);
           setTimeout(() => {
             this.router.navigate(['/dashboard'])
           }, 1000)
