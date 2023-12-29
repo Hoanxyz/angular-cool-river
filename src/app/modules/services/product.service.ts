@@ -5,6 +5,13 @@ export const GET_PRODUCT = gql`
     products(filter: { sku: { eq: $sku } }) {
       aggregations(filter: {}) {
         attribute_code
+        count
+        label
+        options {
+          label
+          value
+        }
+        position
       }
       items {
         id
