@@ -7,10 +7,14 @@ import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
 import {CmsModule} from "./modules/cms/cms.module";
 import {CustomerModule} from "./modules/customer/customer.module";
+import { NotFoundComponent } from './modules/404/components/notfound/notfound.component';
+import { IgxCarouselModule } from 'igniteui-angular';
+import { HammerModule } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [
     AppComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -19,7 +23,9 @@ import {CustomerModule} from "./modules/customer/customer.module";
     GraphQLModule,
     HttpClientModule,
     CmsModule,
-    CustomerModule
+    CustomerModule,
+    IgxCarouselModule,
+    HammerModule
   ],
   exports: [
   ],

@@ -1,18 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Apollo } from 'apollo-angular';
 import { Subscription } from 'rxjs';
 import { GET_CURRENCY, GET_PRODUCT } from 'src/app/modules/services/product.service';
-import { Product } from 'src/app/modules/shared/interface/product';
+import { Product } from 'src/app/modules/shared/interface/product.interface';
+
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styleUrls: ['./product.component.scss']
+  styleUrls: ['./product.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ProductComponent {
   sku: string = '';
   currency: string = '';
-  product: Product = { name: '', price: { regularPrice: { amount: { value: 0 } } }, review_count: 0, reviews: { items: [{ average_rating: '' }] } };
+  gallery: { [src: string]: any } = {};
+
+  product: Product = {
+    name: '',
+    price: { regularPrice: { amount: { value: 0, currency: '' } } },
+    review_count: 0,
+    reviews: { items: [{ average_rating: '', ratings_breakdown: [{ value: 0 }] }] },
+    media_gallery: [{ label: '', url: '' }],
+    id: '',
+    sku: ''
+  };
+
   private subscriptions: Subscription[] = [];
   
   constructor(private route: ActivatedRoute, private apollo: Apollo, private router: Router) {
@@ -28,8 +41,12 @@ export class ProductComponent {
         },
       }).valueChanges.subscribe(
         (rep) => {
-          console.log(rep.data);
-          this.product = rep.data.products.items[0];
+          if (rep.data.products.items.length === 0) {
+            this.router.navigateByUrl('/404', { skipLocationChange: true });
+          } else {
+            this.product = rep.data.products.items[0];
+            console.log(this.product.media_gallery);
+          }
         }
       ),
     );
@@ -40,6 +57,8 @@ export class ProductComponent {
         (rep) => {
           
           this.currency = rep.data.currency.base_currency_symbol;
+          console.log(this.currency);
+
         }
       ),
     );

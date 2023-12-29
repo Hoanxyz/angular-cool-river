@@ -17,4 +17,22 @@
 .star-rating[data-rating="100"] .star {
     @apply text-yellow-500;
 }
-  
+
+.carousel-container {
+    width: 70%;
+    margin: auto;
+    .igx-carousel-indicators--bottom {
+        @apply hidden;
+    }
+
+    .igx-carousel__inner {
+        @apply min-h-[508px];
+    }
+      
+}
+
+.image-container {
+    img {
+        @apply w-[508px] text-right;
+    }
+}

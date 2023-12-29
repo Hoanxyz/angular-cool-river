@@ -6,11 +6,17 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatButtonModule} from "@angular/material/button";
 import { ProductComponent } from './components/product/product.component';
+import { NotFoundComponent } from '../404/components/notfound/notfound.component';
+import { IgxCarouselModule } from 'igniteui-angular';
 
 const routes: Routes = [
     {
         path: ':sku',
         component: ProductComponent
+    },
+    {
+      path: '**',
+      component: NotFoundComponent
     }
 ];
   
@@ -25,6 +31,7 @@ const routes: Routes = [
     MatCheckboxModule,
     ReactiveFormsModule,
     MatButtonModule,
+    IgxCarouselModule
   ]
 })
 export class ProductModule { }

@@ -27,6 +27,10 @@ export const GET_PRODUCT = gql`
             }
           }
         }
+        media_gallery {
+          label
+          url
+        }
       }
     }
     currency {
@@ -39,14 +43,6 @@ export const GET_CURRENCY = gql`
   query GetCurrency {
     currency {
       base_currency_symbol
-    }
-    customAttributeMetadata(attributes: [{}]) {
-      items {
-        attribute_code
-        attribute_type
-        entity_type
-        input_type
-      }
     }
   }
 `;
