@@ -1,0 +1,13 @@
+figure {
+    @apply m-0;
+    
+    img {
+        &.pagebuilder-mobile-hidden {
+            @apply hidden md:block;
+        }
+
+        &.pagebuilder-mobile-only {
+            @apply block md:hidden;
+        }
+    }
+}
