@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import {ReactiveFormsModule} from "@angular/forms";
 import { NewsletterComponent } from './components/newsletter/newsletter.component';
 import {MatInputModule} from "@angular/material/input";
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import {MatInputModule} from "@angular/material/input";
     HeaderComponent,
     FooterComponent,
     NewsletterComponent,
-    SearchComponent
+    SearchComponent,
+    HomeComponent
   ],
   exports: [
     HeaderComponent,
