@@ -1,28 +1,13 @@
-.newsletter {
-  background: linear-gradient(131.46deg, #173F4A 0%, #436E79 100%);
-  @apply py-16;
-  
-  .text-newsletter {
-    h3 {
-      @apply mt-0 mb-4 text-4.5xl font-medium leading-8 text-white text-center;
-    }
-
-    p {
-      @apply m-0 text-base leading-5 text-white text-center;
-    }
-  }
-}
-
 // style footer
 .footer-content {
-  @apply bg-gray-100;
+  @apply bg-footer-300;
 
   .pagebuilder-column-line {
-    @apply max-w-7xl mx-auto;
+    @apply max-w-7xl mx-auto flex flex-wrap;
   }
 
   .footer-bottom {
-    @apply mt-8 bg-gray-200;
+    @apply mt-8 bg-footer-200;
 
     .pagebuilder-column-line {
       @apply flex justify-between items-center py-8;
@@ -33,7 +18,7 @@
     }
 
     .footer-code {
-      @apply flex ml-8;
+      @apply flex ml-6 md:ml-8 mb-2 md:mb-0 w-full md:w-max;
 
       div:last-of-type {
         @apply ml-8;
@@ -45,41 +30,38 @@
     }
 
     .footer-address {
+      @apply w-full md:w-max flex justify-center md:block;
       p {
-        @apply text-gray-800;
+        @apply text-footer-900;
       }
     }
   }
 
   .footer-payment {
-    @apply flex items-center justify-center py-12 border-b border-gray-300;
+    @apply flex items-center justify-center flex-wrap py-12 border-b border-footer-100 -order-1 w-full;
 
     h4 {
-      @apply m-0 text-base font-semibold leading-4;
+      @apply mb-7 md:mb-auto text-base w-full md:my-auto text-center md:text-left md:w-max font-semibold text-black leading-4;
     }
 
     p {
-      @apply m-0 h-9;
+      @apply m-0 flex flex-wrap md:flex-nowrap w-full justify-center md:justify-start;
     }
 
     img {
-      @apply h-full ml-8;
+      @apply max-h-[39px] object-contain inline-block mb-7 md:mb-0;
+    }
 
-      &:first-of-type {
-        @apply ml-0;
-      }
-
-      &:last-of-type {
-        @apply mr-8;
-      }
+    div {
+      @apply md:w-min;
     }
   }
 
   .accordion {
-    @apply md:mt-12 pl-4 md:pl-0;
+    @apply md:mt-12 pl-4 md:pl-0 w-full md:w-1/4;
 
     h4 {
-      @apply mt-0 mb-4 text-base font-semibold leading-4;
+      @apply mt-0 mb-4 text-base text-black font-semibold leading-4;
     }
 
     p {
@@ -91,7 +73,7 @@
     }
 
     a {
-      @apply text-gray-700 text-sm no-underline hover:underline;
+      @apply text-footer-700 text-sm no-underline hover:underline;
     }
   }
 }

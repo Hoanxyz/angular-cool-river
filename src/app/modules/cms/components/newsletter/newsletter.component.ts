@@ -1,5 +1,5 @@
 // newsletter.component.ts
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Apollo } from 'apollo-angular';
 import { SUBSCRIBE_EMAIL_NEWSLETTER } from 'src/app/modules/services/cms.service';
@@ -7,12 +7,15 @@ import { SUBSCRIBE_EMAIL_NEWSLETTER } from 'src/app/modules/services/cms.service
 @Component({
   selector: 'app-newsletter',
   templateUrl: './newsletter.component.html',
-  styleUrls: ['./newsletter.component.scss']
+  styleUrls: ['./newsletter.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class NewsletterComponent implements OnInit {
   newsletterForm!: FormGroup;
   successMessageVisible: boolean = false;
+  errorMessageVisible: boolean = false;
+  errorMessage: string = '';
 
   constructor(
     private fb: FormBuilder, 
@@ -27,7 +30,6 @@ export class NewsletterComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log('function submit running');
     if (this.newsletterForm.valid) {
       const email = this.newsletterForm.get('email')?.value;
       this.apollo.mutate({
@@ -37,10 +39,13 @@ export class NewsletterComponent implements OnInit {
         ({ data }) => {
           // success
           this.successMessageVisible = true;
-          console.log('Newsletter submitted successfully:', data);
+          this.errorMessageVisible = false;
         },
         error => {
           // error
+          this.errorMessage = error;
+          this.successMessageVisible = false;
+          this.errorMessageVisible = true;
           console.error('Error submitting newsletter:', error);
         }
       );
