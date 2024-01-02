@@ -8,21 +8,24 @@ module.exports = {
       sans: ['Montserrat', 'sans-serif'],
       oswald: ['Oswald', 'sans-serif']
     },
-    fontSize: {
-      '1.5xl': ['22px', { lineHeight: '28px' }],
-      '2xl': ['32px', { lineHeight: '34px' }],
-      '4.5xl': ['42px', { lineHeight: '34px' }],
-      'ssm': ['15px', { lineHeight: '17px' }],
-      'sm': ['14px', { lineHeight: '20px' }],
-      'tiny': ['0.8125rem', { lineHeight: '0.75rem',}],
-      'lg': ['18px', { lineHeight: '28px' }],
-      'xxs': ['11px', { lineHeight: '18px' }],
-    },
     extend: {
+      fontSize: {
+        '1.5xl': ['22px', { lineHeight: '34px' }],
+        '2xl': ['32px', { lineHeight: '34px' }],
+        '2.5xl': ['28px', { lineHeight: '28px' }],
+        '4.5xl': ['42px', { lineHeight: '34px' }],
+        'ssm': ['15px', { lineHeight: '17px' }],
+        'base': ['16px', { lineHeight: '19px' }],
+        'xl': ['20px', { lineHeight: '24px' }],
+        'sm': ['14px', { lineHeight: '22px' }],
+        'tiny': ['0.8125rem', { lineHeight: '0.75rem',}],
+        'lg': ['18px', { lineHeight: '28px' }]
+      },
       maxWidth: {
         '1/2': '50%',
         '1400': '1400px',
-        '1240': '1240px'
+        '1240': '1240px',
+        'container': '1260px'
       },
       colors: {
         primary: {
@@ -89,7 +92,8 @@ module.exports = {
         empty: '""'
       },
       letterSpacing: {
-        xsSpacing: '0.5px'
+        xsSpacing: '0.5px',
+        smSpacing: '1px'
       }
     },
   },

@@ -67,13 +67,17 @@ export class ProductComponent {
             this.currency = rep.data.currency.base_currency_symbol;
 
             const aggregations = products.aggregations || [];
+            
+            this.attribute['label'] = this.attribute['label'] || [];
 
             aggregations.forEach((value: any) => {
-              this.attribute['label'] = value.label;
+              this.attribute['label'].push({
+                label: value.label,
+                options: value.options
+              });            
             });
-            if (this.attribute.hasOwnProperty("Category")) {
-              delete this.attribute['Category'];
-            }
+            this.attribute['label'].shift();
+            console.log(this.attribute['label']);            
           }
         }
       ),

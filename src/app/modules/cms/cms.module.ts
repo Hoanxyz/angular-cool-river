@@ -5,13 +5,15 @@ import {RouterLink} from "@angular/router";
 import { FooterComponent } from './components/footer/footer.component';
 import { SearchComponent } from './components/search/search.component';
 import { FormsModule } from '@angular/forms';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
   declarations: [
     HeaderComponent,
     FooterComponent,
-    SearchComponent
+    SearchComponent,
+    HomeComponent
   ],
   exports: [
     HeaderComponent,
