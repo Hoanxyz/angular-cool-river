@@ -8,7 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {CmsModule} from "./modules/cms/cms.module";
 import {CustomerModule} from "./modules/customer/customer.module";
 import { NotFoundComponent } from './modules/404/components/notfound/notfound.component';
-import { IgxCarouselModule } from 'igniteui-angular';
+import { IgxCarouselModule, IgxListModule } from 'igniteui-angular';
 import { HammerModule } from '@angular/platform-browser';
 
 @NgModule({
@@ -25,6 +25,7 @@ import { HammerModule } from '@angular/platform-browser';
     CmsModule,
     CustomerModule,
     IgxCarouselModule,
+    IgxListModule,
     HammerModule
   ],
   exports: [

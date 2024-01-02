@@ -1,12 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { StyleguideComponent } from './styleguide/styleguide.component';
-<<<<<<< HEAD
 import { NotFoundComponent } from './modules/404/components/notfound/notfound.component';
-
-=======
 import { HomeComponent } from './modules/cms/home/home.component';
->>>>>>> aef75b4fb4ec0e7511ff28d2726fd95ad63dba77
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -18,10 +14,6 @@ const routes: Routes = [
   {
     path: 'product',
     loadChildren: () => import('./modules/products/product.module').then((m) => m.ProductModule)
-  },
-  {
-    path: '**',
-    component: NotFoundComponent
   }
 ];
 

@@ -1,6 +1,7 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Apollo } from 'apollo-angular';
+import { IListItemClickEventArgs, ISlideEventArgs, IgxCarouselComponent, IgxListComponent } from 'igniteui-angular';
 import { Subscription } from 'rxjs';
 import { GET_CURRENCY, GET_PRODUCT } from 'src/app/modules/services/product.service';
 import { Product } from 'src/app/modules/shared/interface/product.interface';
@@ -12,9 +13,17 @@ import { ProductData } from 'src/app/modules/shared/interface/productdata.interf
   styleUrls: ['./product.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class ProductComponent {
+export class ProductComponent implements OnInit {
   sku: string = '';
   attribute: { [name: string]: any } = {};
+  @ViewChild(IgxCarouselComponent, { static: true })
+  carousel!: IgxCarouselComponent;
+
+  @ViewChild(IgxListComponent, { static: true })
+  list!: IgxListComponent;
+
+  slides: any[] = [];
+  currentIndex = 0;
 
   currency: ProductData = {
     products: {
@@ -82,5 +91,17 @@ export class ProductComponent {
         }
       ),
     );
+  }
+  public ngOnInit() {
+    // this.addSlides();
+
+    this.list.itemClicked.subscribe((args: IListItemClickEventArgs) => {
+        this.currentIndex = args.item.index;
+        this.carousel.select(this.carousel.get(this.currentIndex));
+    });
+
+    this.carousel.slideChanged.subscribe((args: ISlideEventArgs) => {
+        this.currentIndex = args.slide.index;
+    });
   }
 }

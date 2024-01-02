@@ -24,11 +24,14 @@
     .igx-carousel-indicators--bottom {
         @apply hidden;
     }
+}
 
-    .igx-carousel__inner {
-        @apply min-h-[508px];
-    }
-      
+.igx-carousel__inner {
+    @apply min-w-[508px] min-h-[508px];;
+}
+
+.carousel-animation-wrapper {
+    @apply px-6;
 }
 
 .image-container {

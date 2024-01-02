@@ -5,14 +5,22 @@
 
 <div class="column main flex flex-wrap max-w-1240 m-auto mt-5">
     <div class="product media w-1/2">
-        <div class="carousel-container">
-            <igx-carousel class="test" #carousel>
-                <igx-slide *ngFor="let image of product.media_gallery">
-                    <div class="image-container">
+        <div class="carousel-animation-wrapper flex">
+            <div class="carousel-wrapper order-2">
+                <igx-carousel [navigation]="false" [pause]="false" animationType="fade" [interval]="2000">
+                    <igx-slide *ngFor="let image of product.media_gallery">
                         <img class="w-[508px]" [src]="image.url" alt="Product Image">
-                    </div>
-                </igx-slide>
-            </igx-carousel>
+                    </igx-slide>
+                    <ng-template igxCarouselIndicator></ng-template>
+                </igx-carousel>
+            </div>
+            <div class="list-wrapper order-1 max-w-28">
+                <igx-list>
+                    <igx-list-item *ngFor="let image of product.media_gallery; let i=index" [ngClass]="{'disabled': i !== currentIndex }" >
+                        <img class="max-w-16 max-h-16" [src]="image.url" alt="Product Image">
+                    </igx-list-item>
+                </igx-list>
+            </div>
         </div>
     </div>
 
@@ -52,7 +60,9 @@
                 </div>
             </div>
         </div>
-        <input type="number" id="quantity" name="quantity" min="1" value="1">
-        <button type="button" onclick="addToCart()">Add to Cart</button>
+        <div class="flex">
+            <input type="number" id="quantity" name="quantity" min="1" value="1">
+            <button class="bg-primary text-white text-lg leading-[13px] font-bold h-12" type="button" onclick="addToCart()">Add to Cart</button>
+        </div>
     </div>
 </div>
