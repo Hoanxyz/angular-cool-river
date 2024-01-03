@@ -1,16 +1,12 @@
 // Header top
 .header-top {
-    @apply max-w-1240 m-auto;
+    @apply max-w-1240 m-auto hidden md:block;
     .pagebuilder-column-line {
       @apply flex justify-between;
       .pagebuilder-column {
         @apply flex items-center my-3;
         figure {
           @apply m-0 mr-2.5;
-          // img {
-          //   @apply block;
-          // }
-
           p {
             @apply m-0;
           }
@@ -28,9 +24,9 @@
       .pagebuilder-mobile-only {
         @apply block md:hidden;
       }
-   
+
       img {
-        @apply w-[26px] h-[19px];
+        @apply w-[26px];
       }
     }
   }
@@ -38,23 +34,37 @@
   // Header content
   .header-content-area {
     @apply bg-grey-900;
+
+    .toggle {
+      &::before {
+        @apply content-[url('../../../../../assets/layout/images/menu_icon.svg')] absolute w-5 h-5 left-5 top-[22px];
+      }
+    }
+
     .header-content {
-      @apply flex max-w-1240 m-auto items-center py-4;
+      @apply flex max-w-1240 m-auto items-center md:py-4 py-3;
+      app-search {
+        @apply hidden md:block;
+      }
       .header-item {
-        @apply w-2/6;
+        @apply w-full md:w-2/6 text-center md:text-left;
         img {
-          @apply h-[58px];
+          @apply h-9 md:h-[58px];
         }
+      }
+
+      a.header-item {
+        @apply flex md:block justify-center items-center w-full md:w-2/6;
       }
    
       .header-search {
         @apply text-center flex justify-center;
         input {
-          @apply h-12 text-grey-200 w-[267px] px-4 py-0 border-0;
+          @apply h-12 text-grey-200 w-[267px] px-4 py-0 border-0 hidden md:block;
         }
    
         button {
-          @apply h-12 relative w-[54px] bg-button-background border-0	;
+          @apply h-12 relative w-[54px] bg-button-background border-0;
           &::before {
             content: url('../../../../../assets/layout/images/search_icon.svg');
             position: absolute;
@@ -69,9 +79,30 @@
           }
         }
       }
+
+      .cart {
+        @apply block md:hidden;
+        &::before {
+          @apply content-[url('../../../../../assets/layout/images/cart_icon.svg')] absolute w-5 h-5 right-5 top-4;
+        }
+      }
+
+      .phone-icon {
+        @apply block md:hidden;
+        &::before {
+          @apply content-[url('../../../../../assets/layout/images/phone-icon@1x.svg')] absolute w-5 h-5 left-16 top-5;
+        }
+      }
+
+      .search-icon {
+        @apply block md:hidden;
+        &::before {
+          @apply content-[url('../../../../../assets/layout/images/search_icon.svg')] absolute w-5 h-5 right-16 top-5;
+        }
+      }
    
       .header-contact {
-        @apply text-right;
+        @apply text-right hidden md:block;
         .pagebuilder-column-line {
           @apply flex items-center justify-end;
           .contact-phone {
@@ -81,7 +112,7 @@
             }
 
             figure {
-              @apply mx-4 my-0;
+              @apply mx-4 mt-2.5;
             }
    
             img {
@@ -94,47 +125,44 @@
             @apply text-white no-underline text-ssm font-semibold;
           }
         }
-   
+
         .contact-mobile {
           @apply hidden;
         }
       }
     }
+
+    .cart {
+      @apply block md:hidden;
+      &::before {
+        @apply content-[url('../../../../../assets/layout/images/cart_icon.svg')] absolute w-5 h-5 right-5 top-4;
+      }
+    }
    
     .header-bottom {
-      @apply max-w-1240 m-auto flex justify-between;
+      @apply max-w-1240 m-auto hidden md:flex justify-between;
       .navigation {
         @apply p-0;
         a {
-          @apply inline-block px-3 text-white py-3 text-sm font-semibold tracking-[0.5px] uppercase first:pl-0 no-underline;
+          @apply inline-block px-3 text-white py-3 text-sm font-semibold tracking-xsSpacing  uppercase first:pl-0 no-underline;
         }
       }
       
       .my-acount a {
-        @apply inline-block px-3 text-white py-3 text-sm font-semibold tracking-[0.5px] uppercase no-underline;
-      }
-   
-      .cart {
-        @apply relative;
-        &::before {
-          content: url('../../../../../assets/layout/images/cart_icon.svg');
-          position: absolute;
-          width: 24px;
-          height: 24px;
-          left: -20px;
-          top: 10px;
-        }
+        @apply inline-block px-3 text-white py-3 text-sm font-semibold tracking-xsSpacing uppercase no-underline;
       }
    
       .account {
         @apply relative mr-[45px];
         &::before {
-          content: url('../../../../../assets/layout/images/account_icon.svg');
-          position: absolute;
-          width: 24px;
-          height: 24px;
-          left: -20px;
-          top: 10px;
+          @apply content-[url('../../../../../assets/layout/images/account_icon.svg')] absolute w-6 h-6 left-[-20px] top-2.5;
+        }
+      }
+
+      .cart {
+        @apply relative ;
+        &::before {
+          @apply content-[url('../../../../../assets/layout/images/cart_icon.svg')] absolute w-6 h-6 left-[-20px] top-2.5;
         }
       }
     }
