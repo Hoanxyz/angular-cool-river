@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Apollo} from "apollo-angular";
-import {GENERATE_CUSTOMER_TOKEN, GET_CUSTOMER_DETAILS} from "../../../services/customer.service";
-import {Subscription} from "rxjs";
 import {Router} from "@angular/router";
+import {CustomerService} from "../../../shared/services/customer.service";
+import {ILoginRequest} from "../../../shared/models/customer";
 
 @Component({
   selector: 'app-login',
@@ -12,11 +11,12 @@ import {Router} from "@angular/router";
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
+  loginRequest!: ILoginRequest;
 
   constructor(
     private fb: FormBuilder,
-    private apollo: Apollo,
-    private router: Router
+    private router: Router,
+    private customerService: CustomerService
   ) {
   }
   ngOnInit(): void {
@@ -40,18 +40,16 @@ export class LoginComponent implements OnInit {
 
 
   onSubmit() {
+    this.loginRequest = {
+      email: this.loginForm.get('email')?.value,
+      password: this.loginForm.get('password')?.value
+    }
     if (!this.loginForm.invalid) {
-      this.apollo.mutate({
-        mutation: GENERATE_CUSTOMER_TOKEN,
-        variables: {
-          email: this.loginForm.get('email')?.value,
-          password: this.loginForm.get('password')?.value
-        },
-      })
+      this.customerService.Login(this.loginRequest)
       .subscribe(
         ({ data }) => {
-          // @ts-ignore
-          localStorage.setItem("customer_token", data.generateCustomerToken.token);
+          console.log('login: ', data)
+          localStorage.setItem("customer_token", data?.generateCustomerToken.token);
           setTimeout(() => {
             this.router.navigate(['/dashboard'])
           }, 1000)
