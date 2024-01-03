@@ -1,0 +1,17 @@
+<!-- newsletter.component.html -->
+<div class="newsletter-form-container flex justify-center px-4">
+  <form class="newsletter-form w-full md:w-1/2 text-center mt-5 md:mt-7" [formGroup]="newsletterForm" (ngSubmit)="onSubmit()">
+    <div class="w-full max-w-[442px] mx-auto flex flex-wrap justify-center" appearance="outline">
+      <div class="form-field w-full">
+        <input type="text" formControlName="email" class="w-full px-4 rounded-tl rounded-bl" placeholder="Enter your email address…" />
+        <button class="button button-secondary rounded-tr rounded-br" type="submit">Subscribe</button>
+      </div>
+      <div *ngIf="successMessageVisible" class="success-message w-full text-left mt-2">
+        Newsletter submitted successfully!
+      </div>
+      <mat-error class="w-full text-left mt-2" *ngIf="errorMessageVisible">{{ errorMessage }}</mat-error>
+      <mat-error class="w-full text-left mt-2" *ngIf="newsletterForm.get('email')?.dirty && newsletterForm.get('email')?.errors?.['required']">This is a required field.</mat-error>
+      <mat-error class="w-full text-left mt-2" *ngIf="newsletterForm.get('email')?.errors?.['email']">Please enter a valid email address (Ex: johndoe@domain.com).</mat-error>
+    </div>
+  </form>
+</div>
