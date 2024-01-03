@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Apollo } from 'apollo-angular';
 import { IListItemClickEventArgs, ISlideEventArgs, IgxCarouselComponent, IgxListComponent } from 'igniteui-angular';
@@ -15,6 +15,9 @@ import {MDCTabBar, MDCTabBarFoundation} from '@material/tabs';
   encapsulation: ViewEncapsulation.None
 })
 export class ProductComponent implements OnInit {
+  @Input() quantity: number = 1;
+  @Output() quantityChange: EventEmitter<number> = new EventEmitter<number>();
+
   sku: string = '';
   attribute: { [name: string]: any } = {};
   @ViewChild(IgxCarouselComponent, { static: true })
@@ -47,6 +50,9 @@ export class ProductComponent implements OnInit {
   product: Product = {
     name: '',
     price: { regularPrice: { amount: { value: 0, currency: '' } } },
+    description: {
+      html: ''
+    },
     review_count: 0,
     reviews: { items: [{ average_rating: '', ratings_breakdown: [{ value: 0 }] }] },
     media_gallery: [{ label: '', url: '' }],
@@ -74,6 +80,8 @@ export class ProductComponent implements OnInit {
             this.router.navigateByUrl('/404', { skipLocationChange: true });
           } else {
             this.product = rep.data.products.items[0];
+            console.log(this.product);
+            
             this.currency = rep.data.currency.base_currency_symbol;
 
             const aggregations = products.aggregations || [];
@@ -106,5 +114,17 @@ export class ProductComponent implements OnInit {
     this.carousel.slideChanged.subscribe((args: ISlideEventArgs) => {
         this.currentIndex = args.slide.index;
     });
+  }
+
+  increment() {
+    this.quantity++;
+    this.quantityChange.emit(this.quantity);
+  }
+
+  decrement() {
+    if (this.quantity > 1) {
+      this.quantity--;
+      this.quantityChange.emit(this.quantity);
+    }
   }
 }

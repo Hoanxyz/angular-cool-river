@@ -17,6 +17,9 @@ export const GET_PRODUCT = gql`
         id
         name
         sku
+        description {
+          html
+        }
         price {
             regularPrice {
                 amount {

@@ -3,7 +3,7 @@
     <a class="no-underline text-xxs" [routerLink]="['/']">Home</a> / <span class="text-xxs">{{ product.name }}</span>
 </div>
 <div class="column main max-w-1240 m-auto">
-    <div class="flex flex-wrap mt-5 bg-white">
+    <div class="flex flex-wrap mt-5 bg-white pb-6">
         <div class="product media w-1/2">
             <div class="carousel-animation-wrapper flex p-0">
                 <div class="carousel-wrapper order-2">
@@ -29,11 +29,11 @@
                 <!-- Star Rating -->
                 <div [attr.data-rating]="product.reviews.items[0].average_rating" *ngIf="product.reviews.items[0].average_rating != undefined"
                 class="flex star-rating mr-2">
-                <div class="star text-3xl text-gray-300 mr-1">&#9733;</div>
-                <div class="star text-3xl text-gray-300 mr-1">&#9733;</div>
-                <div class="star text-3xl text-gray-300 mr-1">&#9733;</div>
-                <div class="star text-3xl text-gray-300 mr-1">&#9733;</div>
-                <div class="star text-3xl text-gray-300 mr-1">&#9733;</div>
+                <div class="star text-base text-gray-300 mr-1">&#9733;</div>
+                <div class="star text-base text-gray-300 mr-1">&#9733;</div>
+                <div class="star text-base text-gray-300 mr-1">&#9733;</div>
+                <div class="star text-base text-gray-300 mr-1">&#9733;</div>
+                <div class="star text-base text-gray-300 mr-1">&#9733;</div>
             </div>
     
             <!-- Review count -->
@@ -61,28 +61,27 @@
                 </div>
             </div>
             <div class="flex mt-4">
-                <div class="field qty w-[108px]">
-                    <div class="control">
-                        <span type="button" data-update="updatecart"  id="product-dec" class="decreaseQty"></span>
-                        <input type="number"
-                               name="qty"
-                               id="qty"
-                               min="0"
-                               class="input-text qty h-12 w-full"
-                               />
-                        <span type="button" data-update="updatecart" id="product-upt" class="increaseQty"></span>
+                <div class="field qty w-1/5">
+                    <div class="control relative">
+                        <div class="quantity-control">
+                            <button class="decrease absolute py-6 px-5 border-0 bg-transparent cursor-pointer" (click)="decrement()"></button>
+                            <input type="text" [value]="quantity" disabled class="text-center w-full h-12" />
+                            <button class="increase absolute py-6 px-5 border-0 bg-transparent right-0 cursor-pointer" (click)="increment()"></button>
+                        </div>
                     </div>
                 </div>
-                <button class="bg-primary text-white text-lg leading-[13px] font-bold h-12 w-1/2" type="button" onclick="addToCart()">Add to Cart</button>
+                <button class="bg-primary w-4/5 text-white text-lg leading-[13px] font-bold h-12 w-1/2 border-0 p-0 ml-4" type="button" onclick="addToCart()">Add to Cart</button>
             </div>
             <div class="block-product-top" innerHTML="{{ block_top }}"></div>
         </div>
     </div>
 
     <mat-tab-group>
-        <mat-tab label="Descriptions">Descriptions</mat-tab>
+        <mat-tab *ngIf="product.description.html" label="Descriptions">
+            <div [innerHTML]="product.description.html"></div>
+        </mat-tab>
         <mat-tab label="Specifications">Specifications</mat-tab>
         <mat-tab label="Delivery & returns">Delivery & returns</mat-tab>
-        <mat-tab label="Reviews (3)">Reviews (3)</mat-tab>
+        <mat-tab *ngIf="product.review_count" label="Reviews ({{ product.review_count }})">Reviews {{ product.review_count }}</mat-tab>
     </mat-tab-group>
 </div>

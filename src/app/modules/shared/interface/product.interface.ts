@@ -9,6 +9,9 @@ export interface Product {
     name: string;
     sku: string;
     price: Price;
+    description: {
+        html: string;
+    }
     review_count: number;
     reviews: {
         items: ReviewItem[];
