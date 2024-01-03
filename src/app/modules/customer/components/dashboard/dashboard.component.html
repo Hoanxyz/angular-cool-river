@@ -71,20 +71,24 @@
     <div class="content lg:flex">
       <div class="contact-info">
         <h3>Default Billing Address</h3>
-        <div class="details">
-          <p>{{order.customer.email}}</p>
-          <p>{{order.customer.firstname}}</p>
-          <p>{{order.customer.middlename}}</p>
-          <p>{{order.customer.lastname}}</p>
+        <div *ngIf="address.default_billing" class="details">
+          <p>{{address.default_billing.firstname}} {{address.default_billing.middlename}} {{address.default_billing.lastname}} </p>
+          <p>{{address.default_billing?.street[0]}} {{address.default_billing?.street[1]}} {{address.default_billing?.street[2]}}</p>
+          <p>{{address.default_billing?.city}},{{address.default_billing?.region?.region}},{{address.default_billing?.postcode}}</p>
+          <p>{{address.default_billing?.country_name}}</p>
+          <p>T: {{address.default_billing?.telephone}}</p>
+          <a class="link" href="customer/address/edit">edit address</a>
         </div>
       </div>
       <div class="newsletter-info">
         <h3>Default Shipping Address</h3>
-        <div class="details">
-          <p>{{order.customer.email}}</p>
-          <p>{{order.customer.firstname}}</p>
-          <p>{{order.customer.middlename}}</p>
-          <p>{{order.customer.lastname}}</p>
+        <div  *ngIf="address.default_shipping" class="details">
+          <p>{{address.default_shipping.firstname}} {{address.default_shipping.middlename}} {{address.default_shipping.lastname}} </p>
+          <p>{{address.default_shipping?.street[0]}} {{address.default_shipping?.street[1]}} {{address.default_shipping?.street[2]}}</p>
+          <p>{{address.default_shipping?.city}},{{address.default_shipping?.region?.region}},{{address.default_shipping?.postcode}}</p>
+          <p>{{address.default_shipping?.country_name}}</p>
+          <p>T: {{address.default_shipping?.telephone}}</p>
+          <a class="link" href="customer/address/edit">edit address</a>
         </div>
       </div>
     </div>

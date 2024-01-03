@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem("customer_token", data?.generateCustomerToken.token);
           setTimeout(() => {
             this.router.navigate(['/dashboard'])
-          }, 1000)
+          }, 500)
         },
         error => {
           console.log('there was an error sending the query', error);

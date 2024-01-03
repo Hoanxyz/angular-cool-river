@@ -1,8 +1,8 @@
-<div class="max-w-1400 ml-auto mr-auto lg:px-10 lg:mx-10 lg:mt-10">
-  <h1 class="uppercase lg:mb-10 mt-0">Login or create account</h1>
+<div class="max-w-[480px] px-4 py-8 lg:max-w-1400 ml-auto mr-auto lg:px-12 lg:mb-[96px] lg:mx-12 lg:mt-10">
+  <h1 class="uppercase lg:mb-10 mt-0 text-[36px] lg:text-4.5xl">Login or create account</h1>
   <div class="lg:flex lg:gap-x-12">
-    <form class="log-in-form w-1/2" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <h2 class="uppercase w-100 mb-5 pb-5 border-b border-[#eee] border-0 border-solid">Registered Customers</h2>
+    <form class="log-in-form lg:w-1/2 mb-8 pb-8 lg:mb-0 lg:pb-0 lg:border-0 border-b border-solid border-0" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <h3 class="uppercase w-100 mb-5 pb-5 border-b mt-0 border-[#eee] border-0 border-solid">Registered Customers</h3>
       <div class="row-control lg:max-w-[420px]">
         <mat-label>Email</mat-label>
         <mat-form-field class="w-100" appearance="outline">
@@ -21,15 +21,15 @@
         </mat-form-field>
       </div>
       <div class="row-control row-actions flex justify-between items-center lg:max-w-[420px]">
-        <button mat-raised-button color="primary" type="submit">Login</button>
+        <button color="primary" type="submit" class="text-ssm button button-secondary">Login</button>
         <a href="customer/forgot">Forgot your password</a>
       </div>
 
     </form>
-    <div class="w-1/2">
-      <h2 class="uppercase mb-5 pb-5 border-b border-[#eee] border-0 border-solid">Create account </h2>
+    <div class="lg:w-1/2">
+      <h3 class="uppercase mb-5 pb-5 mt-0 border-b border-[#eee] border-0 border-solid">Create account </h3>
       <p>Creating an account has many benefits: check out faster, keep more than one address, track orders and more.</p>
-      <button mat-raised-button color="primary" routerLink="/customer/register">
+      <button  class="button button-secondary mt-2.5" color="primary" routerLink="/customer/register">
         <input [style.display]="'none'" type="submit">
 Create An Account</button>
     </div>

@@ -1,6 +1,6 @@
-<div class="container max-w-1400 ml-auto mr-auto lg:px-10 lg:mx-10 lg:mt-10">
+<div class="max-w-[425px] px-4 py-8 lg:py-0 ml-auto mr-auto lg:pl-0 lg:ml-[100px] lg:mb-16 lg:mt-10">
   <form class="sign-up-form" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-    <h2>Sign in</h2>
+    <h2 class="uppercase lg:text-4.5xl text-[36px]">Create Account</h2>
     <div class="row-control lg:max-w-[425px]">
       <mat-label>First Name</mat-label>
       <mat-form-field appearance="outline">
@@ -16,6 +16,9 @@
         <input autocomplete matInput formControlName="lastname" />
         <mat-error *ngIf="signupForm.get('password')?.errors?.['required']">This is a required field.</mat-error>
       </mat-form-field>
+    </div>
+    <div class="row-control">
+      <mat-checkbox formControlName="is_subscribed">Sign Up for Newsletter</mat-checkbox>
     </div>
     <div class="row-control lg:max-w-[425px]">
       <mat-label>Email</mat-label>
@@ -43,13 +46,10 @@
         <mat-error *ngIf="signupForm.get('confirmPassword')?.errors?.['valueNotMatch']">Please enter the same value again.</mat-error>
       </mat-form-field>
     </div>
-    <div class="row-control">
-      <mat-checkbox formControlName="is_subscribed">Sign Up for Newsletter</mat-checkbox>
-    </div>
     <div class="row-control row-actions">
       <input [style.display]="'none'" type="submit">
 
-      <button mat-raised-button color="primary" type="submit">Sign up</button>
+      <button class="w-full button button-secondary rounded" color="primary" type="submit">Create Account</button>
     </div>
   </form>
 </div>

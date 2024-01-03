@@ -17,6 +17,25 @@ export const GENERATE_CUSTOMER_ORDER = gql`
       is_subscribed
       lastname
       middlename
+      addresses {
+        city
+        company
+        country_code
+        country_id
+        customer_id
+        default_billing
+        default_shipping
+        firstname
+        lastname
+        middlename
+        postcode
+        region {
+          region
+          region_id
+        }
+        street
+        telephone
+      }
       orders(filter: {}, currentPage: 1, pageSize: 20) {
         items {
           shipping_address {
@@ -51,6 +70,15 @@ export const GENERATE_CUSTOMER_ORDER = gql`
         id
         order_number
       }
+    }
+  }
+`;
+
+export const GET_COUNTRY = gql`
+  query Country($id: String!){
+    country(id: $id) {
+      full_name_english
+      full_name_locale
     }
   }
 `;
