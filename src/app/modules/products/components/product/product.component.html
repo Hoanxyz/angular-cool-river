@@ -5,7 +5,7 @@
 
 <div class="column main flex flex-wrap max-w-1240 m-auto mt-5">
     <div class="product media w-1/2">
-        <div class="carousel-animation-wrapper flex">
+        <div class="carousel-animation-wrapper flex p-0">
             <div class="carousel-wrapper order-2">
                 <igx-carousel [navigation]="false" [pause]="false" animationType="fade" [interval]="2000">
                     <igx-slide *ngFor="let image of product.media_gallery">
@@ -17,7 +17,7 @@
             <div class="list-wrapper order-1 max-w-28">
                 <igx-list>
                     <igx-list-item *ngFor="let image of product.media_gallery; let i=index" [ngClass]="{'disabled': i !== currentIndex }" >
-                        <img class="max-w-16 max-h-16" [src]="image.url" alt="Product Image">
+                        <img class="max-w-[64px] max-h-16 small-image" [src]="image.url" alt="Product Image">
                     </igx-list-item>
                 </igx-list>
             </div>
@@ -61,8 +61,19 @@
             </div>
         </div>
         <div class="flex">
-            <input type="number" id="quantity" name="quantity" min="1" value="1">
-            <button class="bg-primary text-white text-lg leading-[13px] font-bold h-12" type="button" onclick="addToCart()">Add to Cart</button>
+            <div class="field qty w-[108px]">
+                <div class="control">
+                    <span type="button" data-update="updatecart"  id="product-dec" class="decreaseQty"></span>
+                    <input type="number"
+                           name="qty"
+                           id="qty"
+                           min="0"
+                           class="input-text qty h-12 w-full"
+                           />
+                    <span type="button" data-update="updatecart" id="product-upt" class="increaseQty"></span>
+                </div>
+            </div>
+            <button class="bg-primary text-white text-lg leading-[13px] font-bold h-12 w-1/2" type="button" onclick="addToCart()">Add to Cart</button>
         </div>
     </div>
 </div>

@@ -30,8 +30,14 @@
     @apply min-w-[508px] min-h-[508px];;
 }
 
-.carousel-animation-wrapper {
-    @apply px-6;
+.decreaseQty::before {
+    @apply w-5 h-5 absolute;
+    content: url('../../../../../assets/layout/images/minus-2_icon.svg');
+}
+
+.increaseQty::before {
+    @apply w-5 h-5 absolute;
+    content: url('../../../../../assets/layout/images/plus_icon.svg');
 }
 
 .image-container {
