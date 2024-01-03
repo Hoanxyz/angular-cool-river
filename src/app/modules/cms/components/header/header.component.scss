@@ -7,10 +7,6 @@
         @apply flex items-center my-3;
         figure {
           @apply m-0 mr-2.5;
-          // img {
-          //   @apply block;
-          // }
-
           p {
             @apply m-0;
           }
@@ -28,9 +24,9 @@
       .pagebuilder-mobile-only {
         @apply block md:hidden;
       }
-   
+
       img {
-        @apply w-[26px] h-[19px];
+        @apply w-[26px];
       }
     }
   }
@@ -44,7 +40,7 @@
         @apply hidden md:block;
       }
       .header-item {
-        @apply w-full md:w-2/6 text-center;
+        @apply w-full md:w-2/6 text-center md:text-left;
         img {
           @apply h-9 md:h-[58px];
         }
@@ -84,7 +80,7 @@
             }
 
             figure {
-              @apply mx-4;
+              @apply mx-4 mt-2.5;
             }
    
             img {
@@ -97,7 +93,7 @@
             @apply text-white no-underline text-ssm font-semibold;
           }
         }
-   
+
         .contact-mobile {
           @apply hidden;
         }
@@ -109,35 +105,25 @@
       .navigation {
         @apply p-0;
         a {
-          @apply inline-block px-3 text-white py-3 text-sm font-semibold tracking-[0.5px] uppercase first:pl-0 no-underline;
+          @apply inline-block px-3 text-white py-3 text-sm font-semibold tracking-xsSpacing  uppercase first:pl-0 no-underline;
         }
       }
       
       .my-acount a {
-        @apply inline-block px-3 text-white py-3 text-sm font-semibold tracking-[0.5px] uppercase no-underline;
+        @apply inline-block px-3 text-white py-3 text-sm font-semibold tracking-xsSpacing uppercase no-underline;
       }
    
       .cart {
         @apply relative;
         &::before {
-          content: url('../../../../../assets/layout/images/cart_icon.svg');
-          position: absolute;
-          width: 24px;
-          height: 24px;
-          left: -20px;
-          top: 10px;
+          @apply content-[url('../../../../../assets/layout/images/cart_icon.svg')] absolute w-6 h-6 left-[-20px] top-2.5;
         }
       }
    
       .account {
         @apply relative mr-[45px];
         &::before {
-          content: url('../../../../../assets/layout/images/account_icon.svg');
-          position: absolute;
-          width: 24px;
-          height: 24px;
-          left: -20px;
-          top: 10px;
+          @apply content-[url('../../../../../assets/layout/images/account_icon.svg')] absolute w-6 h-6 left-[-20px] top-2.5;
         }
       }
     }
