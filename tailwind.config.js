@@ -75,6 +75,7 @@ module.exports = {
           700: '#4A4A4A',
           800: '#222222',
           900: '#333333',
+          bg: '#F4F4F4'
         },
         button: {
           background: '#45B3F8'

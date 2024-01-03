@@ -8,6 +8,7 @@ import {MatButtonModule} from "@angular/material/button";
 import { ProductComponent } from './components/product/product.component';
 import { NotFoundComponent } from '../404/components/notfound/notfound.component';
 import { IgxCarouselModule, IgxListModule } from 'igniteui-angular';
+import { MatTabsModule } from '@angular/material/tabs';
 
 const routes: Routes = [
     {
@@ -32,7 +33,8 @@ const routes: Routes = [
     ReactiveFormsModule,
     MatButtonModule,
     IgxCarouselModule,
-    IgxListModule
+    IgxListModule,
+    MatTabsModule
   ]
 })
 export class ProductModule { }

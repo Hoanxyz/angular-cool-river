@@ -22,6 +22,7 @@
     "@angular/router": "^16.2.0",
     "@apollo/client": "^3.0.0",
     "@igniteui/material-icons-extended": "^3.0.0",
+    "@material/tabs": "^2.3.0",
     "apollo-angular": "^5.0.2",
     "fflate": "^0.7.3",
     "graphql": "^16",

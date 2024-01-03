@@ -46,10 +46,14 @@ export const GET_PRODUCT = gql`
   }
 `;
 
-export const GET_CURRENCY = gql`
-  query GetCurrency {
-    currency {
-      base_currency_symbol
+export const GET_BLOCK_PRODUCT = gql `
+  query GetProductBlock {
+    cmsBlocks(identifiers: ["product_block"]) {
+      items {
+        content
+        identifier
+        title
+      }
     }
   }
-`;
+`

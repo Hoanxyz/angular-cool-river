@@ -3,9 +3,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Apollo } from 'apollo-angular';
 import { IListItemClickEventArgs, ISlideEventArgs, IgxCarouselComponent, IgxListComponent } from 'igniteui-angular';
 import { Subscription } from 'rxjs';
-import { GET_CURRENCY, GET_PRODUCT } from 'src/app/modules/services/product.service';
+import { GET_BLOCK_PRODUCT, GET_PRODUCT } from 'src/app/modules/services/product.service';
 import { Product } from 'src/app/modules/shared/interface/product.interface';
 import { ProductData } from 'src/app/modules/shared/interface/productdata.interface';
+import {MDCTabBar, MDCTabBarFoundation} from '@material/tabs';
 
 @Component({
   selector: 'app-product',
@@ -21,6 +22,7 @@ export class ProductComponent implements OnInit {
 
   @ViewChild(IgxListComponent, { static: true })
   list!: IgxListComponent;
+  block_top: string = '';
 
   slides: any[] = [];
   currentIndex = 0;
@@ -68,7 +70,6 @@ export class ProductComponent implements OnInit {
       }).valueChanges.subscribe(
         (rep) => {
           const products = rep.data.products;
-
           if (rep.data.products.items.length === 0) {
             this.router.navigateByUrl('/404', { skipLocationChange: true });
           } else {
@@ -86,15 +87,17 @@ export class ProductComponent implements OnInit {
               });            
             });
             this.attribute['label'].shift();
-            console.log(this.attribute['label']);            
           }
+        }
+      ),
+      this.apollo.watchQuery<any>({ query: GET_BLOCK_PRODUCT }).valueChanges.subscribe(
+        (rep) => {
+          this.block_top = rep.data.cmsBlocks.items[0].content;
         }
       ),
     );
   }
   public ngOnInit() {
-    // this.addSlides();
-
     this.list.itemClicked.subscribe((args: IListItemClickEventArgs) => {
         this.currentIndex = args.item.index;
         this.carousel.select(this.carousel.get(this.currentIndex));

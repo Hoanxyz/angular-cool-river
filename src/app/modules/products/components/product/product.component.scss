@@ -46,3 +46,33 @@
     }
 }
 
+.app-product {
+    @apply bg-grey-bg;
+}
+
+.block-product-top {
+    @apply bg-grey-bg mt-4 rounded-[5px];
+    .pagebuilder-column-group {
+        @apply inline-block w-1/2 p-6;
+    }
+
+    .pagebuilder-column-line {
+        .pagebuilder-column {
+            @apply flex items-center;
+            &:first-child {
+                @apply pb-4;
+            }
+            figure {
+                @apply mr-2.5;
+            }
+
+            img {
+                @apply w-6;
+            }
+
+            p {
+                @apply m-0 text-tiny text-grey-400 font-semibold;
+            }
+        }
+    }
+}
