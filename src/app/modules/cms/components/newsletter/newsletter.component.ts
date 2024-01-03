@@ -1,8 +1,7 @@
 // newsletter.component.ts
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Apollo } from 'apollo-angular';
-import { SUBSCRIBE_EMAIL_NEWSLETTER } from 'src/app/modules/services/cms.service';
+import { NewsletterService } from 'src/app/modules/shared/services/newsletter.service';
 
 @Component({
   selector: 'app-newsletter',
@@ -19,7 +18,7 @@ export class NewsletterComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder, 
-    private apollo: Apollo
+    private newsletter: NewsletterService
   ) {   
   }
 
@@ -32,14 +31,12 @@ export class NewsletterComponent implements OnInit {
   onSubmit(): void {
     if (this.newsletterForm.valid) {
       const email = this.newsletterForm.get('email')?.value;
-      this.apollo.mutate({
-        mutation: SUBSCRIBE_EMAIL_NEWSLETTER,
-        variables: { email },
-      }).subscribe(
+      this.newsletter.submitNewSletter(email).subscribe(
         ({ data }) => {
           // success
           this.successMessageVisible = true;
           this.errorMessageVisible = false;
+          console.log(data);
         },
         error => {
           // error
