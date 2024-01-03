@@ -35,7 +35,7 @@
   .header-content-area {
     @apply bg-grey-900;
     .header-content {
-      @apply flex max-w-1240 m-auto items-center py-4;
+      @apply flex max-w-1240 m-auto items-center md:py-4 py-3;
       app-search {
         @apply hidden md:block;
       }
@@ -45,6 +45,10 @@
           @apply h-9 md:h-[58px];
         }
       }
+
+      a.header-item {
+        @apply flex md:block justify-center items-center w-full md:w-2/6;
+      }
    
       .header-search {
         @apply text-center flex justify-center;
@@ -53,7 +57,7 @@
         }
    
         button {
-          @apply h-12 relative w-[54px] bg-button-background border-0	;
+          @apply h-12 relative w-[54px] bg-button-background border-0;
           &::before {
             content: url('../../../../../assets/layout/images/search_icon.svg');
             position: absolute;
