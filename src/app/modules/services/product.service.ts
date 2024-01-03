@@ -20,6 +20,8 @@ export const GET_PRODUCT = gql`
         description {
           html
         }
+        delivery_returns
+        specifications
         price {
             regularPrice {
                 amount {
@@ -56,6 +58,37 @@ export const GET_BLOCK_PRODUCT = gql `
         content
         identifier
         title
+      }
+    }
+  }
+`
+
+export const GET_CART_EMPTY_ID = gql `
+  mutation {
+    createEmptyCart
+  }
+`
+
+export const ADD_TO_CART = gql`
+  mutation($cartId: String!, $sku: String!, $quantity: Float!) {
+    addProductsToCart(
+      cartId: $cartId
+      cartItems: [{ sku: $sku, quantity: $quantity }]
+    ) {
+      cart {
+        id
+        items {
+          id
+          product {
+            sku
+            name
+          }
+          quantity
+        }
+      }
+      user_errors {
+        code
+        message
       }
     }
   }

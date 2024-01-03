@@ -26,7 +26,7 @@ import { HammerModule } from '@angular/platform-browser';
     CustomerModule,
     IgxCarouselModule,
     IgxListModule,
-    HammerModule
+    HammerModule,
   ],
   exports: [
   ],

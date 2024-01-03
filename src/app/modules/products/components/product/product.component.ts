@@ -58,6 +58,8 @@ export class ProductComponent implements OnInit {
     media_gallery: [{ label: '', url: '' }],
     id: '',
     sku: '',
+    delivery_returns: '',
+    specifications: ''
   };
 
   private subscriptions: Subscription[] = [];

@@ -9,6 +9,7 @@ import { ProductComponent } from './components/product/product.component';
 import { NotFoundComponent } from '../404/components/notfound/notfound.component';
 import { IgxCarouselModule, IgxListModule } from 'igniteui-angular';
 import { MatTabsModule } from '@angular/material/tabs';
+import { CartComponent } from './components/cart/cart.component';
 
 const routes: Routes = [
     {
@@ -23,7 +24,8 @@ const routes: Routes = [
   
 @NgModule({
   declarations: [
-    ProductComponent
+    ProductComponent,
+    CartComponent
   ],
   imports: [
     CommonModule,

@@ -12,6 +12,8 @@ export interface Product {
     description: {
         html: string;
     }
+    delivery_returns: string;
+    specifications: string;
     review_count: number;
     reviews: {
         items: ReviewItem[];

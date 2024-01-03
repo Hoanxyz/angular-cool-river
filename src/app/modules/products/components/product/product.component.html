@@ -70,7 +70,7 @@
                         </div>
                     </div>
                 </div>
-                <button class="bg-primary w-4/5 text-white text-lg leading-[13px] font-bold h-12 w-1/2 border-0 p-0 ml-4" type="button" onclick="addToCart()">Add to Cart</button>
+                <button class="bg-primary w-4/5 text-white text-lg leading-[13px] font-bold h-12 w-1/2 border-0 p-0 ml-4 cursor-pointer" type="button" onclick="addToCart()">Add to Cart</button>
             </div>
             <div class="block-product-top" innerHTML="{{ block_top }}"></div>
         </div>
@@ -80,8 +80,12 @@
         <mat-tab *ngIf="product.description.html" label="Descriptions">
             <div [innerHTML]="product.description.html"></div>
         </mat-tab>
-        <mat-tab label="Specifications">Specifications</mat-tab>
-        <mat-tab label="Delivery & returns">Delivery & returns</mat-tab>
+        <mat-tab *ngIf="product.specifications" label="Specifications">
+            <div [innerHTML]="product.specifications"></div>
+        </mat-tab>
+        <mat-tab *ngIf="product.delivery_returns" label="Delivery & returns">
+            <div [innerHTML]="product.delivery_returns"></div>
+        </mat-tab>
         <mat-tab *ngIf="product.review_count" label="Reviews ({{ product.review_count }})">Reviews {{ product.review_count }}</mat-tab>
     </mat-tab-group>
 </div>
