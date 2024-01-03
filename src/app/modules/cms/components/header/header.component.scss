@@ -36,6 +36,12 @@
     @apply bg-grey-900;
     .header-content {
       @apply flex max-w-1240 m-auto items-center md:py-4 py-3;
+      .toggle {
+        &::before {
+          @apply content-[url('../../../../../assets/layout/images/menu_icon.svg')] absolute w-6 h-6 left-5 top-[22px];
+        }
+      }
+
       app-search {
         @apply hidden md:block;
       }
@@ -103,6 +109,13 @@
         }
       }
     }
+
+    .cart {
+      @apply block md:hidden;
+      &::before {
+        @apply content-[url('../../../../../assets/layout/images/cart_icon.svg')] absolute w-5 h-5 right-5 top-4;
+      }
+    }
    
     .header-bottom {
       @apply max-w-1240 m-auto hidden md:flex justify-between;
@@ -115,13 +128,6 @@
       
       .my-acount a {
         @apply inline-block px-3 text-white py-3 text-sm font-semibold tracking-xsSpacing uppercase no-underline;
-      }
-   
-      .cart {
-        @apply relative;
-        &::before {
-          @apply content-[url('../../../../../assets/layout/images/cart_icon.svg')] absolute w-6 h-6 left-[-20px] top-2.5;
-        }
       }
    
       .account {
