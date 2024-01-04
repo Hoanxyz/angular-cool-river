@@ -1,9 +1,10 @@
 import { Component, OnDestroy, ViewEncapsulation } from '@angular/core';
-import { Apollo } from 'apollo-angular';
 import { Router } from '@angular/router';
-import { GET_CATEGORIES, GET_CONTACT, GET_HEADER_TOP, GET_LOGO, GET_SEARCH_QUERY } from 'src/app/modules/services/header.service';
-import { Observable, Subscription, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { FormControl } from '@angular/forms';
+import { CmsService } from 'src/app/modules/shared/services/cms.service';
+import { StoreConfigService } from 'src/app/modules/shared/services/store-config.service';
+import { CategoryService } from 'src/app/modules/shared/services/category.service';
 
 @Component({
   selector: 'app-header',
@@ -15,6 +16,8 @@ export class HeaderComponent implements OnDestroy {
   isLogged = false;
   customer: any;
   loading = true;
+  topHeaderBlockId: string = 'header-top-bar';
+  contactBlockId: string = 'header-contact';
   conTentTopHeader: string = '';
   baseUrl: string = '';
   logoSrc: string = '';
@@ -24,49 +27,42 @@ export class HeaderComponent implements OnDestroy {
   searchResults: any[] = [];
   private subscriptions: Subscription[] = [];
 
-  constructor(private apollo: Apollo, private router: Router) {
+  constructor (
+    private router: Router, 
+    private cmsService: CmsService,
+    private storeConfigService: StoreConfigService,
+    private categoryService: CategoryService
+  ) {
     this.subscriptions.push(
-      this.apollo.watchQuery<any>({ query: GET_HEADER_TOP }).valueChanges.subscribe(
-        (rep) => {
-          this.conTentTopHeader = rep.data.cmsBlocks.items[0].content;
+      this.cmsService.getBlockContent(this.topHeaderBlockId)
+        .valueChanges.subscribe(
+          (rep) => {
+            this.conTentTopHeader = rep.data.cmsBlocks.items[0].content
+          }
+        ),
+    this.cmsService.getBlockContent(this.contactBlockId)
+      .valueChanges.subscribe(
+        (rep) => {          
+          this.conTentContact = rep.data.cmsBlocks.items[0].content
         }
       ),
-      this.apollo.watchQuery<any>({ query: GET_LOGO }).valueChanges.subscribe(
+    this.storeConfigService.getLogo()
+      .valueChanges.subscribe(
         (rep) => {
           this.baseUrl = rep.data.storeConfig.base_url;
           this.logoSrc = rep.data.storeConfig.header_logo_src;
         }
       ),
-      this.apollo.watchQuery<any>({ query: GET_CONTACT }).valueChanges.subscribe(
-        (rep) => {
-          this.conTentContact = rep.data.cmsBlocks.items[0].content;
+    this.categoryService.getCategoriesName()
+    .valueChanges.subscribe(
+      (rep) => {
+        if (rep.data && rep.data.categoryList) {
+          rep.data.categoryList.forEach((value) => {
+            this.categories[value.name] = value;
+          });
         }
-      ),
-      this.apollo.watchQuery<any>({ query: GET_CATEGORIES }).valueChanges.subscribe(
-        (rep) => {
-          if (rep.data && rep.data.categoryList) {
-            rep.data.categoryList.forEach((value: any) => {
-              this.categories[value.name] = value;
-            });
-          }
-        }
-      ),
-      // this.searchControl.valueChanges.pipe(
-      //   debounceTime(300),
-      //   distinctUntilChanged(),
-      //   switchMap((query) => this.searchProducts(query))
-      // ).subscribe((results) => {
-      //   this.searchResults = results;
-      // })
-    );
-  }
-
-  searchProducts(query: string): Observable<any[]> {
-    return this.apollo.watchQuery<any>({
-      query: GET_SEARCH_QUERY,
-      variables: { searchQuery: query },
-    }).valueChanges.pipe(
-      map((result) => result.data.products.items)
+      }
+    )
     );
   }
 
