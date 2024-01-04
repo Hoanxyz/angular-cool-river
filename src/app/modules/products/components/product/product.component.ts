@@ -3,10 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Apollo } from 'apollo-angular';
 import { IListItemClickEventArgs, ISlideEventArgs, IgxCarouselComponent, IgxListComponent } from 'igniteui-angular';
 import { Subscription } from 'rxjs';
-import { GET_BLOCK_PRODUCT, GET_PRODUCT } from 'src/app/modules/services/product.service';
+import { GET_BLOCK_PRODUCT, GET_PRODUCT } from 'src/app/modules/shared/constants/product.service';
 import { Product } from 'src/app/modules/shared/interface/product.interface';
 import { ProductData } from 'src/app/modules/shared/interface/productdata.interface';
-import {MDCTabBar, MDCTabBarFoundation} from '@material/tabs';
 
 @Component({
   selector: 'app-product',
@@ -81,11 +80,8 @@ export class ProductComponent implements OnInit {
           if (rep.data.products.items.length === 0) {
             this.router.navigateByUrl('/404', { skipLocationChange: true });
           } else {
-            this.product = rep.data.products.items[0];
-            console.log(this.product);
-            
+            this.product = rep.data.products.items[0];            
             this.currency = rep.data.currency.base_currency_symbol;
-
             const aggregations = products.aggregations || [];
             
             this.attribute['label'] = this.attribute['label'] || [];

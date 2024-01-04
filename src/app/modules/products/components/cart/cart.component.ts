@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { GET_BLOCK_PRODUCT, GET_PRODUCT } from 'src/app/modules/services/product.service';
 import { ProductService } from 'src/app/modules/shared/services/product.service';
 
 @Component({
