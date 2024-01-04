@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {Apollo} from "apollo-angular";
 import { CategoryList } from "../interface/category-list";
-import { GET_CATEGORIES } from "../../services/header.service";
+import { GET_CATEGORIES_LIST } from "../../shared/constants/category-constants";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class CategoryService {
 
   getCategoriesName(){
     return this.apollo.watchQuery<CategoryList>({ 
-      query: GET_CATEGORIES
+      query: GET_CATEGORIES_LIST
     })
   }
 }
