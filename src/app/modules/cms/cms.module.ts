@@ -5,6 +5,9 @@ import {RouterLink} from "@angular/router";
 import { FooterComponent } from './components/footer/footer.component';
 import { SearchComponent } from './components/search/search.component';
 import { FormsModule } from '@angular/forms';
+import {ReactiveFormsModule} from "@angular/forms";
+import { NewsletterComponent } from './components/newsletter/newsletter.component';
+import {MatInputModule} from "@angular/material/input";
 import { HomeComponent } from './home/home.component';
 
 
@@ -12,6 +15,7 @@ import { HomeComponent } from './home/home.component';
   declarations: [
     HeaderComponent,
     FooterComponent,
+    NewsletterComponent,
     SearchComponent,
     HomeComponent
   ],
@@ -22,6 +26,8 @@ import { HomeComponent } from './home/home.component';
   imports: [
     CommonModule,
     RouterLink,
+    ReactiveFormsModule,
+    MatInputModule,
     FormsModule
   ]
 })

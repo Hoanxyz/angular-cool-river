@@ -1,0 +1,27 @@
+.newsletter-form-container {
+  .form-field {
+    @apply flex;
+    .button {
+      @apply py-4;
+    }
+  }
+}
+
+.newsletter {
+  background: linear-gradient(131.46deg, #173F4A 0%, #436E79 100%);
+  @apply py-16;
+  
+  .text-newsletter {
+    h3 {
+      @apply mt-0 mb-2 md:mb-4 text-3.5xl md:text-4.5xl font-medium text-white uppercase text-center;
+    }
+
+    p {
+      @apply m-0 text-base leading-5 text-white text-center;
+    }
+  }
+
+  .success-message {
+    @apply text-success-bg;
+  }
+}

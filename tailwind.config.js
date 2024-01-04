@@ -13,6 +13,7 @@ module.exports = {
         '1.5xl': ['22px', { lineHeight: '34px' }],
         '2xl': ['32px', { lineHeight: '34px' }],
         '2.5xl': ['28px', { lineHeight: '28px' }],
+        '3.5xl': ['32px', { lineHeight: '34px' }],
         '4.5xl': ['42px', { lineHeight: '34px' }],
         'ssm': ['15px', { lineHeight: '17px' }],
         'base': ['16px', { lineHeight: '19px' }],
@@ -76,6 +77,13 @@ module.exports = {
           800: '#222222',
           900: '#333333',
           bg: '#F4F4F4'
+        },
+        footer: {
+          100: '#EBEBEB',
+          200: '#E7E7E7',
+          300: '#F5F5F5',
+          700: '#4A4A4A',
+          900: '#111111',
         },
         button: {
           background: '#45B3F8'

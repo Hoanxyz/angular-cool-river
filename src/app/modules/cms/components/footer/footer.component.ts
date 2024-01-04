@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { Apollo } from 'apollo-angular';
-import { GET_CONTENT_FOOTER_BOTTOM, GET_CONTENT_NEWSLETER } from 'src/app/modules/services/cms.service';
+import { CmsService } from 'src/app/modules/shared/services/cms.service';
 
 @Component({
   selector: 'app-footer',
@@ -11,16 +11,17 @@ import { GET_CONTENT_FOOTER_BOTTOM, GET_CONTENT_NEWSLETER } from 'src/app/module
 export class FooterComponent {
   conTentNewsletter: string = ''
   conTentFooter: string = ''
-  constructor(private apollo: Apollo) {
-    this.apollo
-      .watchQuery<any>({ query: GET_CONTENT_NEWSLETER })
+  newsLetterBlockId : string = "newsletter";
+  footerBottomBlockId : string = "footer";
+  constructor(private apollo: Apollo, private cmsService: CmsService) {
+    this.cmsService.getBlockContent(this.newsLetterBlockId)
       .valueChanges.subscribe(
         (rep) => {
           this.conTentNewsletter = rep.data.cmsBlocks.items[0].content
+          console.log(this.conTentNewsletter);
         }
       );
-    this.apollo
-      .watchQuery<any>({ query: GET_CONTENT_FOOTER_BOTTOM })
+    this.cmsService.getBlockContent(this.footerBottomBlockId)
       .valueChanges.subscribe(
         (rep) => {
           this.conTentFooter = rep.data.cmsBlocks.items[0].content
