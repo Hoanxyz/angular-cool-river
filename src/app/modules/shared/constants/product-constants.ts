@@ -91,31 +91,24 @@ export const ADD_TO_CART = gql`
 `
 
 export const ADD_CONFIG_TO_CART = gql`
-mutation {
-  addConfigurableProductsToCart(
-    input: {
-      cart_id: "enCHisNlvHfqcIWzxXhVCgrMMmo9v7Rf"
-      cart_items: 
-        {
-            parent_sku: "laptop-1"
-          data: {
-            quantity: 2
-            sku: "Ideapad 120S-KH 11.6 Inch Laptop-Pink-11 inch"
+  mutation AddToCart($cartId: String!, $cartItems: [CartItemInput!]!) {
+    addConfigurableProductsToCart(
+      input: {
+        cart_id: $cartId,
+        cart_items: $cartItems
+      }
+    ) {
+      cart {
+        items {
+          uid
+          quantity
+          product {
+            name
+            sku
           }
-        }
-      
-    }
-  ) {
-    cart {
-      items {
-        uid
-        quantity
-        product {
-          name
-          sku
         }
       }
     }
+
   }
-}
 `

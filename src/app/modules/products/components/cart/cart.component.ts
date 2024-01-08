@@ -29,6 +29,18 @@ export class CartComponent implements OnInit {
     });
   }
 
+  addToCart() {
+    console.log(this.quantity);
+    this.productService.addToCart(this.cartId, this.cartItems).subscribe(
+      (response) => {
+        console.log('Product added to cart:', response);
+      },
+      (error) => {
+        console.error('Error adding product to cart:', error);
+      }
+    );
+  }
+
   ngOnInit(): void {
     this.storedCartId = localStorage.getItem('cartId');
   
@@ -40,19 +52,6 @@ export class CartComponent implements OnInit {
         localStorage.setItem('cartId', this.cartId);
       });
     }
-  }
-  
-
-  addToCart() {
-    console.log(this.quantity);
-    this.productService.addToCart(this.cartId, this.cartItems).subscribe(
-      (response) => {
-        console.log('Product added to cart:', response);
-      },
-      (error) => {
-        console.error('Error adding product to cart:', error);
-      }
-    );
   }
 
   increment() {
