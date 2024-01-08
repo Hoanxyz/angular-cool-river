@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './components/header/header.component';
 import {RouterLink} from "@angular/router";
 import { FooterComponent } from './components/footer/footer.component';
-import { SearchComponent } from './components/search/search.component';
 import { FormsModule } from '@angular/forms';
 import {ReactiveFormsModule} from "@angular/forms";
 import { NewsletterComponent } from './components/newsletter/newsletter.component';
@@ -16,7 +15,6 @@ import { HomeComponent } from './home/home.component';
     HeaderComponent,
     FooterComponent,
     NewsletterComponent,
-    SearchComponent,
     HomeComponent
   ],
   exports: [

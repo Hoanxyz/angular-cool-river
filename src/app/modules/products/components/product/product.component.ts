@@ -14,9 +14,6 @@ import { ProductData } from 'src/app/modules/shared/interface/productdata.interf
   encapsulation: ViewEncapsulation.None
 })
 export class ProductComponent implements OnInit {
-  @Input() quantity: number = 1;
-  @Output() quantityChange: EventEmitter<number> = new EventEmitter<number>();
-
   sku: string = '';
   attribute: { [name: string]: any } = {};
   @ViewChild(IgxCarouselComponent, { static: true })
@@ -113,17 +110,5 @@ export class ProductComponent implements OnInit {
     this.carousel.slideChanged.subscribe((args: ISlideEventArgs) => {
         this.currentIndex = args.slide.index;
     });
-  }
-
-  increment() {
-    this.quantity++;
-    this.quantityChange.emit(this.quantity);
-  }
-
-  decrement() {
-    if (this.quantity > 1) {
-      this.quantity--;
-      this.quantityChange.emit(this.quantity);
-    }
   }
 }

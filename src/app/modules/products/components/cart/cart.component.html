@@ -1,1 +1,12 @@
-<button (click)="addToCart()">Add to Cart</button>
+<div class="flex mt-4">
+    <div class="field qty w-1/5">
+        <div class="control relative">
+            <div class="quantity-control">
+                <button class="decrease absolute py-6 px-5 border-0 bg-transparent cursor-pointer" (click)="decrement()"></button>
+                <input type="text" [value]="quantity" disabled class="text-center w-full h-12" />
+                <button class="increase absolute py-6 px-5 border-0 bg-transparent right-0 cursor-pointer" (click)="increment()"></button>
+            </div>
+        </div>
+    </div>
+    <button class="bg-primary w-4/5 text-white text-lg leading-[13px] font-bold h-12 w-1/2 border-0 p-0 ml-4 cursor-pointer" type="button" (click)="addToCart()">Add to Cart</button>
+</div>

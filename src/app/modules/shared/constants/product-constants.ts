@@ -70,7 +70,7 @@ export const GET_CART_EMPTY_ID = gql `
 `
 
 export const ADD_TO_CART = gql`
-  mutation($cartId: String!, $cartItems: [CartItemInput!]!) {
+  mutation($cartId: String!, $cartItems: [ProductCart!]!) {
     addProductsToCart(
       cartId: $cartId
       cartItems: $cartItems
@@ -91,28 +91,31 @@ export const ADD_TO_CART = gql`
 `
 
 export const ADD_CONFIG_TO_CART = gql`
-  mutation AddToCart($cartId: String!, $cartItems: [CartItemInput!]!) {
-    addConfigurableProductsToCart(
-      input: {
-        cart_id: $cartId,
-        cart_items: $cartItems
-      }
-    ) {
-      cart {
-        items {
-          uid
-          quantity
-          product {
-            name
-            sku
+mutation {
+  addConfigurableProductsToCart(
+    input: {
+      cart_id: "enCHisNlvHfqcIWzxXhVCgrMMmo9v7Rf"
+      cart_items: 
+        {
+            parent_sku: "laptop-1"
+          data: {
+            quantity: 2
+            sku: "Ideapad 120S-KH 11.6 Inch Laptop-Pink-11 inch"
           }
-          ... on ConfigurableCartItem {
-            configurable_options {
-              option_label
-            }
-          }
+        }
+      
+    }
+  ) {
+    cart {
+      items {
+        uid
+        quantity
+        product {
+          name
+          sku
         }
       }
     }
   }
+}
 `
