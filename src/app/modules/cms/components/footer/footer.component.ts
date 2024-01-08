@@ -18,7 +18,6 @@ export class FooterComponent {
       .valueChanges.subscribe(
         (rep) => {
           this.conTentNewsletter = rep.data.cmsBlocks.items[0].content
-          console.log(this.conTentNewsletter);
         }
       );
     this.cmsService.getBlockContent(this.footerBottomBlockId)

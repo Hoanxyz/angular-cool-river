@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Apollo } from 'apollo-angular';
 import { IListItemClickEventArgs, ISlideEventArgs, IgxCarouselComponent, IgxListComponent } from 'igniteui-angular';
 import { Subscription } from 'rxjs';
-import { GET_BLOCK_PRODUCT, GET_PRODUCT } from 'src/app/modules/shared/constants/product.service';
+import { GET_BLOCK_PRODUCT, GET_PRODUCT } from 'src/app/modules/shared/constants/product-constants';
 import { Product } from 'src/app/modules/shared/interface/product.interface';
 import { ProductData } from 'src/app/modules/shared/interface/productdata.interface';
 
@@ -87,12 +87,13 @@ export class ProductComponent implements OnInit {
             this.attribute['label'] = this.attribute['label'] || [];
 
             aggregations.forEach((value: any) => {
-              this.attribute['label'].push({
-                label: value.label,
-                options: value.options
-              });            
+              if (value.label !== 'Category' && value.label !== 'Price') {
+                this.attribute['label'].push({
+                  label: value.label,
+                  options: value.options
+                });            
+              }
             });
-            this.attribute['label'].shift();
           }
         }
       ),

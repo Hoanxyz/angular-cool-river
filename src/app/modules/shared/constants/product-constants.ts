@@ -70,10 +70,10 @@ export const GET_CART_EMPTY_ID = gql `
 `
 
 export const ADD_TO_CART = gql`
-  mutation($cartId: String!, $sku: String!, $quantity: Float!) {
+  mutation($cartId: String!, $cartItems: [CartItemInput!]!) {
     addProductsToCart(
       cartId: $cartId
-      cartItems: [{ sku: $sku, quantity: $quantity }]
+      cartItems: $cartItems
     ) {
       cart {
         id
@@ -86,9 +86,32 @@ export const ADD_TO_CART = gql`
           quantity
         }
       }
-      user_errors {
-        code
-        message
+    }
+  }
+`
+
+export const ADD_CONFIG_TO_CART = gql`
+  mutation AddToCart($cartId: String!, $cartItems: [CartItemInput!]!) {
+    addConfigurableProductsToCart(
+      input: {
+        cart_id: $cartId,
+        cart_items: $cartItems
+      }
+    ) {
+      cart {
+        items {
+          uid
+          quantity
+          product {
+            name
+            sku
+          }
+          ... on ConfigurableCartItem {
+            configurable_options {
+              option_label
+            }
+          }
+        }
       }
     }
   }

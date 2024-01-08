@@ -4,7 +4,7 @@ import {Observable} from "rxjs";
 import {Apollo, gql} from "apollo-angular";
 import {ILoginRequest, ILoginResponse} from "../models/customer";
 import {MutationResult} from "apollo-angular/types";
-import { ADD_TO_CART, GET_CART_EMPTY_ID } from "../../services/product.service";
+import { ADD_TO_CART, GET_CART_EMPTY_ID } from "../constants/product-constants";
 
 @Injectable({
   providedIn: 'root'
@@ -22,13 +22,12 @@ export class ProductService {
     });
   }
 
-  addToCart(cartId: string, sku: string, quantity: number) {
+  addToCart(cartId: string, cartItems: { sku: string }[]) {
     return this.apollo.mutate({
       mutation: ADD_TO_CART,
       variables: {
         cartId: cartId,
-        sku: sku,
-        quantity: quantity,
+        cartItems: cartItems,
       },
     });
   }

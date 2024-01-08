@@ -7,15 +7,34 @@ import { ProductService } from 'src/app/modules/shared/services/product.service'
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
-  cartId!: string;
+  cartId!: any;
+  storedCartId!: string | null;
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-    // Tạo giỏ hàng mới và lấy cartId
-    this.productService.createEmptyCart().subscribe((response) => {
-      console.log(response);
-      
-      // this.cartId = response.data.createEmptyCart;
-    });
+    this.storedCartId = localStorage.getItem('cartId');
+  
+    if (this.storedCartId) {
+      this.cartId = this.storedCartId;
+    } else {
+      this.productService.createEmptyCart().subscribe((response: any) => {
+        this.cartId = response.data.createEmptyCart;
+        localStorage.setItem('cartId', this.cartId);
+      });
+    }
+  }
+  
+
+  addToCart() {
+    const cartItems = [{ sku: "laptop-7", quantity: 1 }];
+
+    this.productService.addToCart(this.cartId, cartItems).subscribe(
+      (response) => {
+        console.log('Product added to cart:', response);
+      },
+      (error) => {
+        console.error('Error adding product to cart:', error);
+      }
+    );
   }
 }
