@@ -9,7 +9,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import { NewsletterComponent } from './components/newsletter/newsletter.component';
 import {MatInputModule} from "@angular/material/input";
 import { HomeComponent } from './home/home.component';
-
+import { CartModule } from '../cart/cart.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,8 @@ import { HomeComponent } from './home/home.component';
     RouterLink,
     ReactiveFormsModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    CartModule
   ]
 })
 export class CmsModule { }

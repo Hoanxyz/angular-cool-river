@@ -12,16 +12,15 @@
     <div class="search-icon"></div>
     <div class="header-item header-contact" innerHTML="{{ conTentContact }}"></div>
   </div>
-  <a class="cart" href="#"></a>
   <div class="header-bottom">
     <div class="navigation">
       <a *ngFor="let categoryName of getCategoryNames()">
         {{ categoryName }}
       </a>
     </div>
-    <div class="my-acount">
+    <div class="my-acount md:flex">
         <a class="account" href="#">Account</a>
-        <a class="cart" href="#">Cart</a>
+        <app-mini-cart></app-mini-cart>
     </div>
   </div>
 </div>

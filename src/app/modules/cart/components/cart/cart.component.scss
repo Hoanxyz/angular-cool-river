@@ -1,0 +1,44 @@
+@layer {
+    .cart-section {
+        @apply block md:flex md:gap-x-12;
+    }
+    .cart-right-section {
+        @apply w-[320px];
+    }
+    .cart-right-wrap {
+        @apply box-border border border-solid border-gray-300 bg-white shadow-md;
+    }
+    .cart-right-item {
+        @apply flex justify-between px-6;
+    }
+    .cart-left-section {
+        @apply grow;
+    }
+    .container {
+        @apply max-w-1240 m-auto items-center md:py-4 py-3 px-4;
+    }
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
+.mat-column-image {
+    @apply grow-0 basis-24 p-0;
+}
+.mat-column-actions {
+    @apply grow-0 basis-10 p-0;
+}
+// .mat-column-sku,
+// .mat-column-quantity,
+// .mat-column-total {
+//     @apply grow-0 basis-auto;
+// }
+.mat-column-name {
+    @apply grow-[2];
+}
+mat-header-row.cdk-header-row {
+    @apply min-h-0;
+}

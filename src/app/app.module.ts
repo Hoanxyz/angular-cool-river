@@ -7,6 +7,7 @@ import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
 import {CmsModule} from "./modules/cms/cms.module";
 import {CustomerModule} from "./modules/customer/customer.module";
+import { CartModule } from './modules/cart/cart.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {CustomerModule} from "./modules/customer/customer.module";
     GraphQLModule,
     HttpClientModule,
     CmsModule,
-    CustomerModule
+    CustomerModule,
+    CartModule
   ],
   exports: [
   ],

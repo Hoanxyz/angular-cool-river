@@ -1,0 +1,135 @@
+<!-- cart.component.html -->
+<div class="container min-h-screen m-auto flex justify-center" *ngIf="setLoading">
+    <mat-spinner></mat-spinner>
+</div>
+<div class="container" *ngIf="!setLoading">
+    <h1>Shopping Cart</h1>
+    <!-- Display cart content if dataSource is not null -->
+    <div *ngIf="dataSource && dataSource.data && dataSource.data.length > 0" class="cart-section">
+        <div class="cart-left-section">
+            <mat-table [dataSource]="dataSource">
+                <!-- Define your columns -->
+                <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+                    <mat-header-cell *matHeaderCellDef class="!hidden">{{ column }}</mat-header-cell>
+                    <mat-cell *matCellDef="let element" class="!py-6">
+                        <!-- For image columns, display data -->
+                        <ng-container *ngIf="column === 'image'">
+                            <div class="w-24">
+                                <img class="max-w-full h-auto" [src]="element.product.image.url" alt="">
+                            </div>
+                        </ng-container>
+                        <!-- For 'quantity' column, display input field and buttons -->
+                        <ng-container *ngIf="column === 'quantity'">
+                            <div class="quantity-container flex border border-solid  border-gray-300">
+                                <button  (click)="minusQuantity(element)" class="border-0 bg-transparent h-12">
+                                    <mat-icon>remove</mat-icon>
+                                </button>
+                                <input *ngIf="loadingInputId !== element.uid" class="border-0 w-12 text-center" type="number" [ngModel]="element.quantity" (ngModelChange)="updateQuantity(element, $event)">
+                                <svg *ngIf="loadingInputId === element.uid" class="mt-3 animate-spin w-12 h-5 text-blue" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                                <button (click)="plusQuantity(element)" class="border-0 bg-transparent h-12">
+                                    <mat-icon>add</mat-icon>
+                                </button>
+                            </div>
+                        </ng-container>
+                        <!-- For 'actions' column, display remove icon -->
+                        <ng-container *ngIf="column === 'actions'">
+                            <button (click)="removeItem(element)" class="bg-transparent border-0 cursor-pointer p-0">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                        </ng-container>
+                        <!-- For name columns, display data -->
+                        <ng-container *ngIf="column === 'name'" class="shrink">
+                            <div>
+                                <div class="text-sm font-medium">{{ element.product.name }}</div>
+                                <div *ngIf="element?.configurable_options && element?.configurable_options.length > 0">
+                                    <div *ngFor="let itemConfig of element.configurable_options" class="text-xs italic text-grey-750 text-grey-750 font-medium">
+                                        {{ itemConfig.option_label }}: {{ itemConfig.value_label }}
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                        <ng-container *ngIf="column === 'sku'">
+                            {{ element.product.sku }}
+                        </ng-container>
+                        <!-- For 'total' column, display total price -->
+                        <ng-container *ngIf="column === 'total'">
+                            <div>
+                                <span [ngClass]="{'text-grey-150 text-base line-through': element.prices.total_item_discount.value > 0, 'text-xl font-medium text-black': element.prices.total_item_discount.value === 0 }">
+                                    {{ element.prices.row_total.value | priceFormat:'$'}}
+                                </span>
+                                <span *ngIf="element.prices.total_item_discount.value > 0" class="text-[#D0021B] text-xl font-medium">
+                                {{ element.prices.total_item_discount.value | priceFormat:'$' }}
+                                </span>
+                            </div>
+                          </ng-container>
+                    </mat-cell>
+                </ng-container>
+            
+                <!-- Add table rows -->
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+            </mat-table>
+            
+        </div>
+        
+        <!-- Display total price -->
+        <div *ngIf="dataCartTotal" class="cart-right-section">
+            <div class="cart-right-wrap">
+                <div class="py-2 px-6">
+                    <div (click)="toggle()" class="flex justify-between items-center" >
+                        <span class="h3 text-sm cursor-pointer">
+                            Discount Codes
+                        </span>
+                        <span>
+                            <mat-icon class="self-center">keyboard_arrow_down</mat-icon>
+                        </span>
+                    </div>
+                    <div class="flex my-2" *ngIf="isToggled">
+                        <input type="text" [(ngModel)]="discountCode" placeholder="Enter discount code"  class="px-2"/>
+                        <button  class="button button-primary" (click)="applyDiscountCode()">Apply</button>
+                    </div>
+                    <div *ngIf="dataCartTotal.applied_coupons && dataCartTotal.applied_coupons.length > 0" class="pt-4">
+                        <span class="text-grey-700 text-[13px]">
+                            Discount Codes
+                        </span>
+                        <div *ngFor="let appliedCode of dataCartTotal.applied_coupons">
+                            <span  class="text-grey-700 text-[13px]">{{ appliedCode.code }}</span>
+                        </div>
+                        <button  class="button button-primary mt-2" (click)="removeDiscountCode()">Remove</button>
+                    </div>
+                    
+                </div>
+                <div class="border-solid border-0 border-t border-gray-300 cart-right-item pt-3 pb-2 text-grey-700 text-[13px]">
+                    <span  >Subtotal</span>
+                    <span >{{ dataCartTotal.prices.subtotal_excluding_tax.value | priceFormat:'$' }}</span>
+                </div>
+                <div *ngIf="dataCartTotal.prices.applied_taxes && dataCartTotal.prices.applied_taxes.length > 0" class="cart-right-item pb-2">
+                    <span class="text-grey-700 text-[13px]">GST</span>
+                    <div *ngFor="let data of dataCartTotal.prices.applied_taxes">
+                        <span class="text-grey-700 text-[13px]">{{ data.label }}: {{ data.amount.value | priceFormat:'$' }}</span>
+                    </div>
+                </div>
+                <div *ngIf="dataCartTotal.prices.discounts && dataCartTotal.prices.discounts.length > 0" class=" pb-2">
+                    <div *ngFor="let discount of dataCartTotal.prices.discounts" class="cart-right-item pb-2 text-grey-700 text-[13px]">
+                        <span>{{ discount.label }}</span>
+                        <span>-{{ discount.amount.value | priceFormat:'$' }}</span>
+                    </div>
+                </div>
+                <div class="border-solid border-0 border-t border-gray-300  cart-right-item py-4 text-ssm font-semibold">
+                    <strong class="font-semibold">Total</strong>
+                    <strong class="font-semibold">{{ dataCartTotal.prices.grand_total.value  | priceFormat:'$' }}</strong>
+                </div>
+                <div class="cart-right-item pt-2 pb-4">
+                    <a class="button button-primary w-full" href="/checkout">Go to Checkout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Display message for empty cart -->
+    <div *ngIf="!dataSource || !dataSource.data || dataSource.data.length === 0">
+        <p>Empty Cart</p>
+    </div>
+</div>

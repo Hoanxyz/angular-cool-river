@@ -1,0 +1,25 @@
+.minicart-content .mat-column-info {
+    @apply flex-col flex;
+}
+.minicart-content .mat-column-image {
+    @apply grow-0 basis-24 !p-0;
+}
+.minicart-content .mat-column-info {
+    @apply pr-0;
+}
+.minicart-content .mat-mdc-header-row {
+    @apply min-h-0;
+}
+.minicart-content .mat-mdc-cell {
+    @apply border-gray-300 !py-6;
+}
+app-mini-cart {
+    display: inline-block;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
